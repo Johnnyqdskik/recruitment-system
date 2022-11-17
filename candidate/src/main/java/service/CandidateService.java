@@ -24,12 +24,13 @@ public class CandidateService {
 
     }
     public void createCandidate(Candidate candidate) {
-        Optional<CandidateEntity> existingCandidate = candidateRepository.findBySsn(candidate.getSsn());
+        Optional<CandidateEntity> existingCandidate =
+                candidateRepository.findBySsn(candidate.getSsn());
         if(existingCandidate.isPresent()){
             log.warn("Candidate with ssn {} already exists", candidate.getSsn());
-            throw new IllegalArgumentException("Candidate with ssn " + candidate.getSsn() + " already exists");
+            throw new IllegalArgumentException
+                    ("Candidate with ssn " + candidate.getSsn() + " already exists");
         }
-
         candidateRepository.save(CandidateMapper.mapDtoToEntity(candidate));
     }
     public List<Candidate> findAllCandidates(){
@@ -38,6 +39,18 @@ public class CandidateService {
                 .map(CandidateMapper::mapEntityToDto)
                 .collect(Collectors.toList());
         return result;
+    }
+
+    public void deleteCandidate (Candidate candidate) {
+        Optional<CandidateEntity>existingCandidate =
+                candidateRepository.findBySsn(candidate.getSsn());
+        if(existingCandidate.isPresent()){
+            candidateRepository.delete(CandidateMapper.mapDtoToEntity(candidate));
+        }else {
+            log.warn("Candidate with ssn {} does not exists", candidate.getSsn());
+            throw new IllegalArgumentException
+                    ("Candidate with ssn " + candidate.getSsn() + " does not exists");
+        }
     }
 
 }
