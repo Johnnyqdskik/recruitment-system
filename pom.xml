@@ -18,7 +18,7 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.nttdata</groupId>
+	<groupId>com.nttdata.recruitmentsystem</groupId>
 	<artifactId>recruitment-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>recruitment-system</name>
@@ -32,37 +32,37 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.nttdata</groupId>
+				<groupId>com.nttdata.recruitmentsystem</groupId>
 				<artifactId>webapp</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.nttdata</groupId>
+				<groupId>com.nttdata.recruitmentsystem</groupId>
 				<artifactId>user</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-			<groupId>com.nttdata</groupId>
+			<groupId>com.nttdata.recruitmentsystem</groupId>
 			<artifactId>candidate</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 			<dependency>
-			<groupId>com.nttdata</groupId>
+			<groupId>com.nttdata.recruitmentsystem</groupId>
 			<artifactId>application</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 			<dependency>
-			<groupId>com.nttdata</groupId>
+			<groupId>com.nttdata.recruitmentsystem</groupId>
 			<artifactId>form</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 			<dependency>
-			<groupId>com.nttdata</groupId>
+			<groupId>com.nttdata.recruitmentsystem</groupId>
 			<artifactId>login</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 			<dependency>
-			<groupId>com.nttdata</groupId>
+			<groupId>com.nttdata.recruitmentsystem</groupId>
 			<artifactId>template</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -86,11 +86,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
