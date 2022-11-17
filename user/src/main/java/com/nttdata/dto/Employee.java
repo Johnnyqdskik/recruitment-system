@@ -10,10 +10,12 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 
-public class User {
+public class Employee {
     @NotEmpty(message = "Username can not be empty")
-    private String username;
+    private String email;
     private String password;
     private String role;
+    private boolean active;
 }
