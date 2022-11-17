@@ -5,6 +5,8 @@ import com.nttdata.entity.EmployeeEntity;
 import com.nttdata.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,16 @@ public class EmployeeService {
     }
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(encoder());
+        return authProvider;
+    }
 
     public List<Employee> findAll(){
         Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAll();

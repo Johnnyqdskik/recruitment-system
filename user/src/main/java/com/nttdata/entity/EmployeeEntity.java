@@ -1,11 +1,14 @@
 package com.nttdata.entity;
 
+import com.nttdata.dto.EmployeeRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(schema = "", name = "")
@@ -15,10 +18,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 
 public class EmployeeEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "id")
-    private Integer id;
+    private UUID id;   //TODO: PITAJ ROBERTA ?
 
     @Column(name = "email")
     private String email;
@@ -26,9 +29,10 @@ public class EmployeeEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "role")
-    private String role;
-
     @Column(name = "active")
     private boolean active;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private EmployeeRole role;
 }
