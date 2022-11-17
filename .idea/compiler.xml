@@ -6,16 +6,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="recruitment-system" />
+        <module name="webapp" />
+        <module name="template" />
+        <module name="candidate" />
+        <module name="application" />
+        <module name="form" />
+        <module name="login" />
+        <module name="user" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="recruitment-system" target="11" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="recruitment-system" options="-parameters" />
+      <module name="application" options="-parameters" />
+      <module name="candidate" options="-parameters" />
+      <module name="form" options="-parameters" />
+      <module name="login" options="-parameters" />
+      <module name="recruitment-system" options="" />
+      <module name="template" options="-parameters" />
+      <module name="user" options="-parameters" />
+      <module name="webapp" options="-parameters" />
     </option>
   </component>
 </project>
