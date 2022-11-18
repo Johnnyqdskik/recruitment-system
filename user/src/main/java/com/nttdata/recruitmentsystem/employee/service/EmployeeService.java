@@ -59,10 +59,7 @@ public class EmployeeService {
         if (existingPerson.isPresent()) {
             throw new IllegalArgumentException(" Employee with that email " + employee.getEmail() + " already exists");
         }
-        EmployeeCreate newEmployee = new EmployeeCreate();
-        newEmployee.setEmail(employee.getEmail());
-        newEmployee.setPassword(employee.getPassword()); //TODO: PASSWORD HASH
-        newEmployee.setRole(employee.getRole());
-        employeeRepository.save(Mapper.mapDtoToEntity(newEmployee));
+        employeeRepository.save(Mapper.mapDtoToEntity(employee));
+        //TODO: PASSWORD HASH
     }
 }

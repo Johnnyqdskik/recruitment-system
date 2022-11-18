@@ -28,7 +28,7 @@ public class EmployeeEntity {
     private String password;
 
     @Column(name = "active")
-    private boolean active;
+    private boolean active = true;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
