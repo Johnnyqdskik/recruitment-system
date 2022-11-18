@@ -15,7 +15,7 @@ public class Candidate {
 
     private String candidateName;
     private String email;
-    int phoneNumber;
+    private String phoneNumber;
 
 
 
