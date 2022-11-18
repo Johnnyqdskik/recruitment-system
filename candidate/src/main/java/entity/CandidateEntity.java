@@ -22,14 +22,13 @@ public class CandidateEntity {
     @Column (name = "candidate_id")
     private Integer id;
 
-    @Column (name = "first_name")
-    private String candidateFirstName;
+    @Column (name = "name")
+    private String candidateName;
 
-    @Column (name = "last_name")
-    private String candidateLastName;
+    @Column (name = "email")
+    private String candidateEmail;
 
-    @Column (name = "ssn")
-    private Integer ssn;
+
 
 
 

@@ -13,9 +13,9 @@ public class Candidate {
 
 
     private int id;
-    private String candidateFirstName;
-    private String candidateLastName;
-    private int ssn;
+    private String candidateName;
+    private String email;
+
 
 
 

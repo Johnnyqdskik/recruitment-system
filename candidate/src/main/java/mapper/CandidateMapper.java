@@ -7,17 +7,15 @@ public class CandidateMapper {
 
     public static Candidate mapEntityToDto(CandidateEntity entity){
         return Candidate.builder()
-                .candidateFirstName(entity.getCandidateFirstName())
-                .candidateLastName(entity.getCandidateLastName())
-                .ssn(entity.getSsn())
+                .candidateName(entity.getCandidateName())
+                .email(entity.getCandidateEmail())
                 .build();
     }
 
     public static CandidateEntity mapDtoToEntity(Candidate c) {
         return CandidateEntity.builder()
-                .candidateFirstName(c.getCandidateFirstName())
-                .candidateLastName(c.getCandidateLastName())
-                .ssn(c.getSsn())
+                .candidateName(c.getCandidateName())
+                .candidateEmail(c.getEmail())
                 .build();
 
     }
