@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class EmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "employee_id")
     private int id;
 
     @Column(name = "email")
