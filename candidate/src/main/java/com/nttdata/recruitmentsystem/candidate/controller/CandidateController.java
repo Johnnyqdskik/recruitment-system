@@ -1,6 +1,7 @@
 package com.nttdata.recruitmentsystem.candidate.controller;
 
 import com.nttdata.recruitmentsystem.candidate.data.Candidate;
+import com.nttdata.recruitmentsystem.candidate.data.CandidateRequest;
 import com.nttdata.recruitmentsystem.candidate.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,8 @@ public class CandidateController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createCandidate (@RequestBody Candidate candidate) {
-        candidateService.createCandidate(candidate);
+    public ResponseEntity<?> createCandidate (@RequestBody CandidateRequest candidateRequest) {
+        candidateService.createCandidate(candidateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

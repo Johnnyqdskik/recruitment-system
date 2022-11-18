@@ -4,16 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-
 @Data
 @Builder
 @AllArgsConstructor
-public class Candidate {
+public class CandidateRequest {
 
-    private Integer id;
     private String candidateName;
     private String email;
     private String phoneNumber;
 
 }
+
+

@@ -2,6 +2,7 @@ package controller;
 
 import com.nttdata.recruitmentsystem.candidate.controller.CandidateController;
 import com.nttdata.recruitmentsystem.candidate.data.Candidate;
+import com.nttdata.recruitmentsystem.candidate.data.CandidateRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -22,7 +23,7 @@ public class CandidateControllerTest {
     @Test
     public void testGetAllCandidates() {
         List<Candidate> candidate = new ArrayList<>();
-        Candidate c = new Candidate("Nikola", "n@gmail.com", "123456");
+        Candidate c = new Candidate(1, "Nikola","n@gmail.com", "123456");
         candidate.add(c);
 
         Mockito.when(candidateController.getAll()).thenReturn(candidate);
