@@ -28,8 +28,8 @@ public class CandidateEntity {
     @Column (name = "email")
     private String email;
 
-    @Column (name = "phone")
-    private Integer phone;
+    @Column (name = "phone_number")
+    private String phoneNumber;
 
 
 
