@@ -18,7 +18,7 @@ public class CandidateEntity {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "candidate_id")
     private Integer id;
 
