@@ -1,14 +1,8 @@
-package com.nttdata.service;
+package com.nttdata.recruitmentsystem.employee.service;
 
-import com.nttdata.dto.Employee;
-import com.nttdata.entity.EmployeeEntity;
-import com.nttdata.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.nttdata.recruitmentsystem.employee.dto.Employee;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +17,8 @@ public class EmployeeService {
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
+
+    //controller
 //    @Bean
 //    public PasswordEncoder encoder() {
 //        return new BCryptPasswordEncoder();

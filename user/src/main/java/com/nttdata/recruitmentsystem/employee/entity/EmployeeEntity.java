@@ -1,17 +1,15 @@
-package com.nttdata.entity;
+package com.nttdata.recruitmentsystem.employee.entity;
 
-import com.nttdata.dto.EmployeeRole;
+import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
-@Table(schema = "", name = "")
+@Table(schema = "recruitment_system", name = "employee")
 @Data
 @Builder
 @NoArgsConstructor

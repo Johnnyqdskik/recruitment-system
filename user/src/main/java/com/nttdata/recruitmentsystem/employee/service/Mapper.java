@@ -1,7 +1,7 @@
-package com.nttdata.service;
+package com.nttdata.recruitmentsystem.employee.service;
 
-import com.nttdata.dto.Employee;
-import com.nttdata.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import lombok.Builder;
 import lombok.Data;
 
