@@ -16,7 +16,7 @@ public class Employee {
     private int id;
     private String email;
     private String password;
-    private boolean active;
+    private boolean active = true;
 
     @Enumerated(EnumType.STRING)
     private EmployeeRole role;

@@ -57,7 +57,7 @@ public class EmployeeService {
     public void createEmployee(EmployeeCreate employee) {
         Optional<EmployeeEntity> existingPerson = employeeRepository.findByEmail(employee.getEmail());
         if (existingPerson.isPresent()) {
-            throw new IllegalArgumentException("Employee with that email" + employee.getEmail() + "already exists");
+            throw new IllegalArgumentException(" Employee with that email " + employee.getEmail() + " already exists");
         }
         EmployeeCreate newEmployee = new EmployeeCreate();
         newEmployee.setEmail(employee.getEmail());
