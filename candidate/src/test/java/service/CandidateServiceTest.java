@@ -33,9 +33,9 @@ public class CandidateServiceTest {
     public void testFindAll_OK() {
         List<CandidateEntity> candidateEntities = new ArrayList<>();
         CandidateEntity c = new CandidateEntity();
-        c.setId(1);
         c.setCandidateName("Nikola");
-        c.setCandidateEmail("test@test");
+        c.setEmail("test@test");
+        c.setPhoneNumber("1234");
         candidateEntities.add(c);
 
         Mockito.when(candidateRepository.findAll()).thenReturn(candidateEntities);
@@ -44,7 +44,8 @@ public class CandidateServiceTest {
         if (!finalList.isEmpty()) {
             assertNotNull(c);
             assertEquals(c.getCandidateName(), finalList.get(0).getCandidateName());
-            assertEquals(c.getCandidateEmail(), finalList.get(0).getEmail());
+            assertEquals(c.getEmail(), finalList.get(0).getEmail());
+            assertEquals(c.getPhoneNumber(), finalList.get(0).getPhoneNumber());
 
         }
         System.out.println(candidateEntities);

@@ -9,6 +9,7 @@ public class CandidateMapper {
         return Candidate.builder()
                 .candidateName(entity.getCandidateName())
                 .email(entity.getEmail())
+                .phoneNumber(entity.getPhoneNumber())
                 .build();
     }
 
@@ -16,6 +17,7 @@ public class CandidateMapper {
         return CandidateEntity.builder()
                 .candidateName(c.getCandidateName())
                 .email(c.getEmail())
+                .phoneNumber(c.getPhoneNumber())
                 .build();
 
     }

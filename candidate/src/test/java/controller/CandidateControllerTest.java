@@ -22,7 +22,7 @@ public class CandidateControllerTest {
     @Test
     public void testGetAllCandidates() {
         List<Candidate> candidate = new ArrayList<>();
-        Candidate c = new Candidate(123456, "Nikola", "n@gmail.com");
+        Candidate c = new Candidate("Nikola", "n@gmail.com", "123456");
         candidate.add(c);
 
         Mockito.when(candidateController.getAll()).thenReturn(candidate);
