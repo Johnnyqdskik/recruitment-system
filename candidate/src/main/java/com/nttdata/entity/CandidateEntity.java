@@ -1,4 +1,4 @@
-package entity;
+package com.nttdata.entity;
 
 
 import lombok.AllArgsConstructor;

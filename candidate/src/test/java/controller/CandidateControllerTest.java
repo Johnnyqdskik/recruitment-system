@@ -1,6 +1,7 @@
 package controller;
 
-import data.Candidate;
+import com.nttdata.controller.CandidateController;
+import com.nttdata.data.Candidate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

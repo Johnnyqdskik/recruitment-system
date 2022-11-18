@@ -1,6 +1,6 @@
-package repository;
+package com.nttdata.repository;
 
-import entity.CandidateEntity;
+import com.nttdata.entity.CandidateEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

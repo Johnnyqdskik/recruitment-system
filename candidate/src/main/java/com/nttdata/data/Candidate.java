@@ -1,4 +1,4 @@
-package data;
+package com.nttdata.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

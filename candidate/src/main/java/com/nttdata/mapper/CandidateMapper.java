@@ -1,7 +1,7 @@
-package mapper;
+package com.nttdata.mapper;
 
-import data.Candidate;
-import entity.CandidateEntity;
+import com.nttdata.data.Candidate;
+import com.nttdata.entity.CandidateEntity;
 
 public class CandidateMapper {
 
