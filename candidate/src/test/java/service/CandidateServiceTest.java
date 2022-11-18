@@ -1,15 +1,15 @@
 package service;
 
-import com.nttdata.data.Candidate;
-import com.nttdata.entity.CandidateEntity;
-import com.nttdata.service.CandidateService;
+import com.nttdata.recruitmentsystem.candidate.data.Candidate;
+import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
+import com.nttdata.recruitmentsystem.candidate.service.CandidateService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.nttdata.repository.CandidateRepository;
+import com.nttdata.recruitmentsystem.candidate.repository.CandidateRepository;
 
 import java.util.ArrayList;
 import java.util.List;

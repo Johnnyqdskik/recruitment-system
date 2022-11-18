@@ -1,11 +1,11 @@
-package com.nttdata.service;
+package com.nttdata.recruitmentsystem.candidate.service;
 
-import com.nttdata.data.Candidate;
-import com.nttdata.entity.CandidateEntity;
+import com.nttdata.recruitmentsystem.candidate.data.Candidate;
+import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
 import lombok.extern.slf4j.Slf4j;
-import com.nttdata.mapper.CandidateMapper;
+import com.nttdata.recruitmentsystem.candidate.mapper.CandidateMapper;
 import org.springframework.stereotype.Service;
-import com.nttdata.repository.CandidateRepository;
+import com.nttdata.recruitmentsystem.candidate.repository.CandidateRepository;
 
 import java.util.List;
 import java.util.Optional;

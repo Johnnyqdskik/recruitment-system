@@ -1,4 +1,4 @@
-package com.nttdata;
+package com.nttdata.recruitmentsystem.candidate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
