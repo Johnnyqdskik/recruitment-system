@@ -11,7 +11,7 @@ import service.CandidateService;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("api/candidates")
 public class CandidateController {
 
     private final CandidateService candidateService;
@@ -21,20 +21,16 @@ public class CandidateController {
         this.candidateService = candidateService;
     }
 
-    @GetMapping
+    @GetMapping ("api/candidates")
     public List<Candidate> getAll(){
         return candidateService.findAllCandidates();
     }
 
-    @PostMapping
+    @PostMapping("api/candidates")
     public ResponseEntity<?> createCandidate (@RequestBody Candidate candidate) {
         candidateService.createCandidate(candidate);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @PostMapping
-    public ResponseEntity<?> deleteCandidate (@RequestBody Candidate candidate){
-        candidateService.deleteCandidate(candidate);
-        return new ResponseEntity<>(HttpStatus.OK);
-        }
-    }
+
+}
 
