@@ -38,12 +38,5 @@ public class CandidateService {
                 .collect(Collectors.toList());
         return result;
     }
-    public void deleteCandidate (Candidate candidate) {
-        Optional<CandidateEntity> existingCandidate = candidateRepository.findByEmail(candidate.getEmail());
-        if (existingCandidate.isPresent()) {
-            candidateRepository.delete(CandidateMapper.mapDtoToEntity(candidate));
-        }
-        log.warn("Candidate with email {} does not exists", candidate.getEmail());
-        throw new IllegalArgumentException("Candidate with email " + candidate.getEmail() + " does not exists");
-    }
+
 }

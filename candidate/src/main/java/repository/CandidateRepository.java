@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface CandidateRepository extends CrudRepository <CandidateEntity, Integer> {
 
 
-    Optional<CandidateEntity> findByName(String name);
+    Optional<CandidateEntity> findById(Integer id);
     Optional<CandidateEntity> findByEmail(String email);
 
 
