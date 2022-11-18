@@ -10,6 +10,7 @@ import lombok.Data;
 public class Mapper {
     public static Employee mapEntityToDto (EmployeeEntity employee){
         return Employee.builder()
+                .id(employee.getId())
                 .email(employee.getEmail())
                 .password(employee.getPassword())
                 .role(employee.getRole())
@@ -19,6 +20,7 @@ public class Mapper {
 
     public static EmployeeEntity mapDtoToEntity(Employee employee){
         return EmployeeEntity.builder()
+                .id(employee.getId())
                 .email(employee.getEmail())
                 .password(employee.getPassword())
                 .role(employee.getRole())
