@@ -1,6 +1,5 @@
-package com.nttdata.UserDetails;
+package com.nttdata.userdetails;
 
-import com.nttdata.UserDetails.UserDetailsImpl;
 import com.nttdata.entity.EmployeeEntity;
 import com.nttdata.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;

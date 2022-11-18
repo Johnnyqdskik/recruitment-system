@@ -1,6 +1,6 @@
 package com.nttdata.security;
 
-import com.nttdata.UserDetails.UserDetailsImpl;
+import com.nttdata.userdetails.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

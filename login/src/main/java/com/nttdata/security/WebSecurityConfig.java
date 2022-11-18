@@ -1,7 +1,6 @@
 package com.nttdata.security;
 
-import com.nttdata.UserDetails.UserDetailsImpl;
-import com.nttdata.UserDetails.UserDetailsServiceImpl;
+import com.nttdata.userdetails.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
