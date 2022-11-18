@@ -1,6 +1,7 @@
 package com.nttdata.recruitmentsystem.employee.service;
 
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
+import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
@@ -53,12 +54,12 @@ public class EmployeeService {
                 .collect(Collectors.toList());
         return result;
     }
-    public void createEmployee(Employee employee) {
+    public void createEmployee(EmployeeCreate employee) {
         Optional<EmployeeEntity> existingPerson = employeeRepository.findByEmail(employee.getEmail());
         if (existingPerson.isPresent()) {
             throw new IllegalArgumentException("Employee with that email" + employee.getEmail() + "already exists");
         }
-        Employee newEmployee = new Employee();
+        EmployeeCreate newEmployee = new EmployeeCreate();
         newEmployee.setEmail(employee.getEmail());
         newEmployee.setPassword(employee.getPassword()); //TODO: PASSWORD HASH
         newEmployee.setRole(employee.getRole());

@@ -1,6 +1,7 @@
 package com.nttdata.recruitmentsystem.employee.controller;
 
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
+import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class EmployeeController {
         return employeeService.findAll();
     }
     @PostMapping
-    public ResponseEntity<?> createEmployee(@RequestBody @Valid Employee employee){
+    public ResponseEntity<?> createEmployee(@RequestBody @Valid EmployeeCreate employee){
         employeeService.createEmployee(employee);
         return new ResponseEntity<>(HttpStatus.OK);
     }

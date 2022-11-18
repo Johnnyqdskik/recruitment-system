@@ -1,5 +1,6 @@
 package com.nttdata.recruitmentsystem.employee.service;
 
+import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import lombok.Builder;
@@ -18,13 +19,11 @@ public class Mapper {
                 .build();
     }
 
-    public static EmployeeEntity mapDtoToEntity(Employee employee){
+    public static EmployeeEntity mapDtoToEntity(EmployeeCreate employee){
         return EmployeeEntity.builder()
-                .id(employee.getId())
                 .email(employee.getEmail())
                 .password(employee.getPassword())
                 .role(employee.getRole())
-                .active(employee.isActive())
                 .build();
     }
 }
