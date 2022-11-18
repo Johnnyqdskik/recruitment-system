@@ -26,7 +26,7 @@ public class CandidateEntity {
     private String candidateName;
 
     @Column (name = "email")
-    private String candidateEmail;
+    private String email;
 
 
 

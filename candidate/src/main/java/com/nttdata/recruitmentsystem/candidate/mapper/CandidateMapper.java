@@ -8,14 +8,14 @@ public class CandidateMapper {
     public static Candidate mapEntityToDto(CandidateEntity entity){
         return Candidate.builder()
                 .candidateName(entity.getCandidateName())
-                .email(entity.getCandidateEmail())
+                .email(entity.getEmail())
                 .build();
     }
 
     public static CandidateEntity mapDtoToEntity(Candidate c) {
         return CandidateEntity.builder()
                 .candidateName(c.getCandidateName())
-                .candidateEmail(c.getEmail())
+                .email(c.getEmail())
                 .build();
 
     }
