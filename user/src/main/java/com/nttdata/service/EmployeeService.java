@@ -23,22 +23,22 @@ public class EmployeeService {
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private UserDetailsService userDetailsService;
+//    @Bean
+//    public PasswordEncoder encoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private UserDetailsService userDetailsService;
 
-    @Bean
-    public DaoAuthenticationProvider authProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(encoder());
-        return authProvider;
-    }
+//    @Bean
+//    public DaoAuthenticationProvider authProvider() {
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService);
+//        authProvider.setPasswordEncoder(encoder());
+//        return authProvider;
+//    }
 
     public List<Employee> findAll(){
         Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAll();
@@ -64,7 +64,7 @@ public class EmployeeService {
         }
         Employee newEmployee = new Employee();
         newEmployee.setEmail(employee.getEmail());
-        newEmployee.setPassword(passwordEncoder.encode(employee.getPassword()));
+        newEmployee.setPassword(employee.getPassword()); //TODO: PASSWORD HASH
         newEmployee.setRole(employee.getRole());
         employeeRepository.save(Mapper.mapDtoToEntity(newEmployee));
     }

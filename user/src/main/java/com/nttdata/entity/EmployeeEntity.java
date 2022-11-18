@@ -18,10 +18,10 @@ import java.util.UUID;
 @AllArgsConstructor
 
 public class EmployeeEntity {
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;   //TODO: PITAJ ROBERTA ?
+    private int id;
 
     @Column(name = "email")
     private String email;
