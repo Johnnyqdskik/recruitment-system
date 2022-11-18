@@ -1,6 +1,7 @@
 package com.nttdata.recruitmentsystem.employee.service;
 
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeCreateEntity;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import lombok.Builder;
@@ -24,6 +25,7 @@ public class Mapper {
                 .email(employee.getEmail())
                 .password(employee.getPassword())
                 .role(employee.getRole())
+                .active(true)
                 .build();
     }
 }

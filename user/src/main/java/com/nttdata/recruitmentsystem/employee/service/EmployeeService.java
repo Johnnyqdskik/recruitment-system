@@ -2,6 +2,7 @@ package com.nttdata.recruitmentsystem.employee.service;
 
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeCreateEntity;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
@@ -55,8 +56,8 @@ public class EmployeeService {
         return result;
     }
     public void createEmployee(EmployeeCreate employee) {
-        Optional<EmployeeEntity> existingPerson = employeeRepository.findByEmail(employee.getEmail());
-        if (existingPerson.isPresent()) {
+        Optional<EmployeeEntity> existingEmployee = employeeRepository.findByEmail(employee.getEmail());
+        if (existingEmployee.isPresent()) {
             throw new IllegalArgumentException(" Employee with that email " + employee.getEmail() + " already exists");
         }
         employeeRepository.save(Mapper.mapDtoToEntity(employee));
