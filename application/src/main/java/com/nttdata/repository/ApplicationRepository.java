@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ApplicationRepository extends CrudRepository {
+public interface ApplicationRepository extends CrudRepository<ApplicationEntity, Integer> {
 
     Optional<ApplicationEntity> findByRecruiterAndCandidate(Optional<EmployeeEntity> userEntity, Optional<CandidateEntity> candidateEntity);
 
