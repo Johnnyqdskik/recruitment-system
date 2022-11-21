@@ -2,7 +2,7 @@ package com.nttdata.recruitmentsystem.employee.service;
 
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
-import com.nttdata.recruitmentsystem.employee.entity.EmployeeCreateEntity;
+import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
@@ -47,8 +47,8 @@ public class EmployeeService {
         return employees;
     }
 
-    public List<Employee> findAllAdmins(){
-        Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAllAdmins();
+    public List<Employee> findAllByRole(EmployeeRole role){
+        Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAllByRole(role);
 
         List<Employee> result = StreamSupport.stream(employeeEntities.spliterator(), false)
                 .map(Mapper::mapEntityToDto)
