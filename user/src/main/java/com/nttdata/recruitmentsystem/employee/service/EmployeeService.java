@@ -5,6 +5,8 @@ import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeCreateEntity;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,23 +22,10 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    //controller
-//    @Bean
-//    public PasswordEncoder encoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-//    @Autowired
-//    private UserDetailsService userDetailsService;
 
-//    @Bean
-//    public DaoAuthenticationProvider authProvider() {
-//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(encoder());
-//        return authProvider;
-//    }
+   @Autowired
+   private PasswordEncoder passwordEncoder;
+
 
     public List<Employee> findAll(){
         Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAll();
@@ -60,7 +49,9 @@ public class EmployeeService {
         if (existingEmployee.isPresent()) {
             throw new IllegalArgumentException(" Employee with that email " + employee.getEmail() + " already exists");
         }
+
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+
         employeeRepository.save(Mapper.mapDtoToEntity(employee));
-        //TODO: PASSWORD HASH
     }
 }

@@ -1,16 +1,18 @@
 package com.nttdata.userdetails;
 
-import com.nttdata.entity.EmployeeEntity;
-import com.nttdata.repository.EmployeeRepository;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @AllArgsConstructor
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
