@@ -27,6 +27,7 @@
 		<mockito.version>4.9.0</mockito.version>
 		<project.version>0.0.1-SNAPSHOT</project.version>
 		<java.version>11</java.version>
+		<springfox.version>3.0.0</springfox.version>
 		<start-class>com.nttdata.RecruitmentSystemApplication</start-class>
 	</properties>
 	<dependencyManagement>
@@ -91,6 +92,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.4</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>

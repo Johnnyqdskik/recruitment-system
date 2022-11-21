@@ -2,7 +2,6 @@ package com.nttdata.recruitmentsystem.employee.service;
 
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
-import com.nttdata.recruitmentsystem.employee.entity.EmployeeCreateEntity;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
