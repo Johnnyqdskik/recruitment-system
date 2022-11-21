@@ -1,6 +1,7 @@
 package com.nttdata.recruitmentsystem.service;
 
 import com.nttdata.recruitmentsystem.dto.ApplicationRequest;
+import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
 import com.nttdata.recruitmentsystem.repository.ApplicationRepository;
 import com.nttdata.recruitmentsystem.dto.Application;
@@ -42,15 +43,19 @@ public class ApplicationService {
             throw new IllegalArgumentException("This application already exists!");
         }
 
-        applicationEntity = ApplicationEntity.builder()
-                .recruiter(recruiterEntity.get())
-                .candidate(candidateEntity.get())
-                .creationDate(new Date())
-                .build();
+        if(recruiterEntity.get().getRole() == EmployeeRole.RECRUITER) {
+            applicationEntity = ApplicationEntity.builder()
+                    .recruiter(recruiterEntity.get())
+                    .candidate(candidateEntity.get())
+                    .creationDate(new Date())
+                    .build();
+
+            applicationRepository.save(applicationEntity);
+        } else {
+            throw new IllegalArgumentException("Can't create application because you are not RECRUITER!");
+        }
 
         Application application = mapEntityToDto(applicationEntity);
-
-        applicationRepository.save(applicationEntity);
 
         return application;
     }
