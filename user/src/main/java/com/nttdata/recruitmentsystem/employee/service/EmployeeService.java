@@ -4,6 +4,7 @@ import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.employee.exceptionHandler.WebException;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,24 +20,6 @@ public class EmployeeService {
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-
-    //controller
-//    @Bean
-//    public PasswordEncoder encoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-//    @Autowired
-//    private UserDetailsService userDetailsService;
-
-//    @Bean
-//    public DaoAuthenticationProvider authProvider() {
-//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(encoder());
-//        return authProvider;
-//    }
 
     public List<Employee> findAll(){
         Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAll();
@@ -55,10 +38,10 @@ public class EmployeeService {
                 .collect(Collectors.toList());
         return result;
     }
-    public void createEmployee(EmployeeCreate employee) {
+    public void createEmployee(EmployeeCreate employee) throws WebException.EmailExistsException {
         Optional<EmployeeEntity> existingEmployee = employeeRepository.findByEmail(employee.getEmail());
         if (existingEmployee.isPresent()) {
-            throw new IllegalArgumentException(" Employee with that email " + employee.getEmail() + " already exists");
+            throw new WebException.EmailExistsException();
         }
         employeeRepository.save(Mapper.mapDtoToEntity(employee));
         //TODO: PASSWORD HASH
