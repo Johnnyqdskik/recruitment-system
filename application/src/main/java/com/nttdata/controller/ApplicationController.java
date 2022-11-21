@@ -22,7 +22,7 @@ public class ApplicationController {
 
     @GetMapping("/candidates/{id}")
     public List<Application> findAllApplicationsByCandidateId(@PathVariable("id") Integer candidateId){
-        return applicationService.findByCandidateName(candidateId);
+        return applicationService.findByCandidateId(candidateId);
     }
 
     @PostMapping
