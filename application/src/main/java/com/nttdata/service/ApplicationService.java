@@ -54,7 +54,7 @@ public class ApplicationService {
     }
 
     public List<Application> findByRecruiterId(Integer recruiterId) {
-       List<Application> applications = applicationRepository.findAllByRecruiterName(recruiterId)
+       List<Application> applications = applicationRepository.findAllByRecruiterId(recruiterId)
                .stream()
                .map(ApplicationService::mapEntityToDto)
                .collect(Collectors.toList());
@@ -62,8 +62,8 @@ public class ApplicationService {
        return applications;
     }
 
-    public List<Application> findByCandidateName(Integer candidateId) {
-        List<Application> applications = applicationRepository.findAllByCandidateName(candidateId)
+    public List<Application> findByCandidateId(Integer candidateId) {
+        List<Application> applications = applicationRepository.findAllByCandidateId(candidateId)
                 .stream()
                 .map(ApplicationService::mapEntityToDto)
                 .collect(Collectors.toList());

@@ -14,9 +14,9 @@ public interface ApplicationRepository extends CrudRepository {
 
     Optional<ApplicationEntity> findByRecruiterAndCandidate(Optional<EmployeeEntity> userEntity, Optional<CandidateEntity> candidateEntity);
 
-    @Query("SELECT app FROM ApplicationEntity app JOIN app.recruiter r WHERE r.userName = :recruiterName")
-    Optional<ApplicationEntity> findAllByRecruiterName(String recruiterName);
+    @Query("SELECT app FROM ApplicationEntity app JOIN app.recruiter r WHERE r.id = :recruiterId")
+    Optional<ApplicationEntity> findAllByRecruiterId(Integer recruiterId);
 
-    @Query("SELECT app FROM ApplicationEntity app JOIN app.candidate c WHERE c.userName = :candidateName")
-    Optional<ApplicationEntity> findAllByCandidateName(String candidateName);
+    @Query("SELECT app FROM ApplicationEntity app JOIN app.candidate c WHERE c.id = :candidateId")
+    Optional<ApplicationEntity> findAllByCandidateId(Integer candidateId);
 }
