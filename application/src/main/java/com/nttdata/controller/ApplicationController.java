@@ -15,14 +15,14 @@ public class ApplicationController {
 
     private final ApplicationService applicationService;
 
-    @GetMapping("/{recruiterName}")
-    public List<Application> findAllApplicationsByRecruiterName(@PathVariable("recruiterName") String recruiterName){
-        return findAllApplicationsByRecruiterName(recruiterName);
+    @GetMapping("/recruiters/{id}")
+    public List<Application> findAllApplicationsByRecruiterName(@PathVariable("id") Integer recruiterId){
+        return applicationService.findByRecruiterId(recruiterId);
     }
 
-    @GetMapping("/{candidateName}")
-    public List<Application> findAllApplicationsByCandidateName(@PathVariable("candidateName") String candidateName){
-        return findAllApplicationsByCandidateName(candidateName);
+    @GetMapping("/candidates/{id}")
+    public List<Application> findAllApplicationsByCandidateId(@PathVariable("id") Integer candidateId){
+        return applicationService.findByCandidateName(candidateId);
     }
 
     @PostMapping

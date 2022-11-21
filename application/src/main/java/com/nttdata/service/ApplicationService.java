@@ -26,7 +26,7 @@ public class ApplicationService {
     private final EmployeeRepository employeeRepository;
 
     @Transactional
-    public Application createApplication(ApplicationRequest applicationRequest){
+    public Application createApplication(ApplicationRequest applicationRequest) {
         Optional<EmployeeEntity> recruiterEntity = employeeRepository.findByEmail(applicationRequest.getRecruiterName());
         if (recruiterEntity == null) {
             throw new IllegalArgumentException("Recruiter " + applicationRequest.getRecruiterName() + " not found!");
@@ -53,8 +53,8 @@ public class ApplicationService {
         return application;
     }
 
-    private List<Application> findByRecruiterName(String recruiterName){
-       List<Application> applications = applicationRepository.findAllByRecruiterName(recruiterName)
+    public List<Application> findByRecruiterId(Integer recruiterId) {
+       List<Application> applications = applicationRepository.findAllByRecruiterName(recruiterId)
                .stream()
                .map(ApplicationService::mapEntityToDto)
                .collect(Collectors.toList());
@@ -62,8 +62,8 @@ public class ApplicationService {
        return applications;
     }
 
-    private List<Application> findByCandidateName(String candidateName){
-        List<Application> applications = applicationRepository.findAllByCandidateName(candidateName)
+    public List<Application> findByCandidateName(Integer candidateId) {
+        List<Application> applications = applicationRepository.findAllByCandidateName(candidateId)
                 .stream()
                 .map(ApplicationService::mapEntityToDto)
                 .collect(Collectors.toList());
@@ -71,7 +71,7 @@ public class ApplicationService {
         return applications;
     }
 
-    public static Application mapEntityToDto(ApplicationEntity applicationEntity){
+    public static Application mapEntityToDto(ApplicationEntity applicationEntity) {
         return Application.builder()
                 .candidate(applicationEntity.getCandidate())
                 .recruiter(applicationEntity.getRecruiter())
