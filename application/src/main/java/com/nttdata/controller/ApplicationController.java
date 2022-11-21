@@ -25,7 +25,7 @@ public class ApplicationController {
         return findAllApplicationsByCandidateName(candidateName);
     }
 
-    @PostMapping("/{create}")
+    @PostMapping
     public Application createNewApplication(ApplicationRequest applicationRequest){
         return applicationService.createApplication(applicationRequest);
     }
