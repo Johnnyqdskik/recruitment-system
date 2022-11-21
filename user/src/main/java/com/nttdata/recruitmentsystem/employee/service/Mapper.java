@@ -1,7 +1,9 @@
-package com.nttdata.service;
+package com.nttdata.recruitmentsystem.employee.service;
 
-import com.nttdata.dto.Employee;
-import com.nttdata.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeCreateEntity;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,6 +12,7 @@ import lombok.Data;
 public class Mapper {
     public static Employee mapEntityToDto (EmployeeEntity employee){
         return Employee.builder()
+                .id(employee.getId())
                 .email(employee.getEmail())
                 .password(employee.getPassword())
                 .role(employee.getRole())
@@ -17,12 +20,12 @@ public class Mapper {
                 .build();
     }
 
-    public static EmployeeEntity mapDtoToEntity(Employee employee){
+    public static EmployeeEntity mapDtoToEntity(EmployeeCreate employee){
         return EmployeeEntity.builder()
                 .email(employee.getEmail())
                 .password(employee.getPassword())
                 .role(employee.getRole())
-                .active(employee.isActive())
+                .active(true)
                 .build();
     }
 }

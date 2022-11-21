@@ -1,26 +1,24 @@
-package com.nttdata.entity;
+package com.nttdata.recruitmentsystem.employee.entity;
 
-import com.nttdata.dto.EmployeeRole;
+import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
-@Table(schema = "", name = "")
+@Table(schema = "recruitment_system", name = "employee")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class EmployeeEntity {
+public class EmployeeCreateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "employee_id")
     private int id;
 
     @Column(name = "email")
@@ -30,7 +28,7 @@ public class EmployeeEntity {
     private String password;
 
     @Column(name = "active")
-    private boolean active;
+    private boolean active = true;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")

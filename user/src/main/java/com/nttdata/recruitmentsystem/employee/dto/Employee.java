@@ -1,13 +1,9 @@
-package com.nttdata.dto;
+package com.nttdata.recruitmentsystem.employee.dto;
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.validation.constraints.NotEmpty;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -20,11 +16,9 @@ public class Employee {
     private int id;
     private String email;
     private String password;
-    private boolean active;
+    private boolean active = true;
 
     @Enumerated(EnumType.STRING)
     private EmployeeRole role;
-    private Integer logCount;
-
 
 }
