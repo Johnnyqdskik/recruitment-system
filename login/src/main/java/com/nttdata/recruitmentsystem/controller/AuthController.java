@@ -1,15 +1,14 @@
-package com.nttdata.controller;
+package com.nttdata.recruitmentsystem.controller;
 
-import com.nttdata.payload.request.LoginRequest;
-import com.nttdata.payload.response.JwtResponse;
-import com.nttdata.security.JwtUtils;
-import com.nttdata.userdetails.UserDetailsImpl;
+import com.nttdata.recruitmentsystem.payload.request.LoginRequest;
+import com.nttdata.recruitmentsystem.payload.response.JwtResponse;
+import com.nttdata.recruitmentsystem.security.JwtUtils;
+import com.nttdata.recruitmentsystem.userdetails.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

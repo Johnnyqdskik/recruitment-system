@@ -1,4 +1,4 @@
-package com.nttdata.payload.response;
+package com.nttdata.recruitmentsystem.payload.response;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.nttdata.userdetails;
+package com.nttdata.recruitmentsystem.userdetails;
 
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;

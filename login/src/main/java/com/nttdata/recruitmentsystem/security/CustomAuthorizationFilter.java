@@ -1,6 +1,6 @@
-package com.nttdata.security;
+package com.nttdata.recruitmentsystem.security;
 
-import com.nttdata.userdetails.UserDetailsServiceImpl;
+import com.nttdata.recruitmentsystem.userdetails.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

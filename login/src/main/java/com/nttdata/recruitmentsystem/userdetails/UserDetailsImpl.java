@@ -1,4 +1,4 @@
-package com.nttdata.userdetails;
+package com.nttdata.recruitmentsystem.userdetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
