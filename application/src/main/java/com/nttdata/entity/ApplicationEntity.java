@@ -1,6 +1,7 @@
 package com.nttdata.entity;
 
 import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,5 +35,5 @@ public class ApplicationEntity {
 
    @ManyToOne
    @JoinColumn(name = "fk_recruiter", nullable = false)
-   private UserEntity recruiter;
+   private EmployeeEntity recruiter;
 }

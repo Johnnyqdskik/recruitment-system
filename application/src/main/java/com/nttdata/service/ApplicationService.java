@@ -5,6 +5,8 @@ import com.nttdata.dto.ApplicationRequest;
 import com.nttdata.entity.ApplicationEntity;
 import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
 import com.nttdata.recruitmentsystem.candidate.repository.CandidateRepository;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import com.nttdata.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,11 +23,11 @@ public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
     private final CandidateRepository candidateRepository;
-    private final UserRepository userRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Transactional
     public Application createApplication(ApplicationRequest applicationRequest){
-        Optional<UserEntity> recruiterEntity = userRepository.findByUserName(applicationRequest.getRecruiterName());
+        Optional<EmployeeEntity> recruiterEntity = employeeRepository.findByEmail(applicationRequest.getRecruiterName());
         if (recruiterEntity == null) {
             throw new IllegalArgumentException("Recruiter " + applicationRequest.getRecruiterName() + " not found!");
         }
@@ -41,8 +43,8 @@ public class ApplicationService {
         }
 
         applicationEntity = ApplicationEntity.builder()
-                .recruiter(recruiterEntity)
-                .candidate(candidateEntity)
+                .recruiter(recruiterEntity.get())
+                .candidate(candidateEntity.get())
                 .creationDate(new Date())
                 .build();
 

@@ -1,6 +1,7 @@
 package com.nttdata.dto;
 
-import com.nttdata.recruitmentsystem.candidate.data.Candidate;
+import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,7 +11,8 @@ import java.util.Date;
 @Builder
 public class Application {
 
-    private Candidate candidate;
-    private User recruiter;
+    private CandidateEntity candidate;
+    private EmployeeEntity recruiter;
     private Date creationDate;
+
 }
