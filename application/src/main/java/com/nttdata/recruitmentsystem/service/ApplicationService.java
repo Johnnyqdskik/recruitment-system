@@ -1,13 +1,13 @@
-package com.nttdata.service;
+package com.nttdata.recruitmentsystem.service;
 
-import com.nttdata.dto.Application;
-import com.nttdata.dto.ApplicationRequest;
-import com.nttdata.entity.ApplicationEntity;
+import com.nttdata.recruitmentsystem.dto.ApplicationRequest;
+import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
+import com.nttdata.recruitmentsystem.repository.ApplicationRepository;
+import com.nttdata.recruitmentsystem.dto.Application;
+import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
 import com.nttdata.recruitmentsystem.candidate.repository.CandidateRepository;
-import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
-import com.nttdata.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,16 +27,16 @@ public class ApplicationService {
 
     @Transactional
     public Application createApplication(ApplicationRequest applicationRequest) {
-        Optional<EmployeeEntity> recruiterEntity = employeeRepository.findByEmail(applicationRequest.getRecruiterName());
-        if (recruiterEntity == null) {
-            throw new IllegalArgumentException("Recruiter " + applicationRequest.getRecruiterName() + " not found!");
+        Optional<EmployeeEntity> recruiterEntity = employeeRepository.findById(applicationRequest.getRecruiterId());
+        if (!recruiterEntity.isPresent()) {
+            throw new IllegalArgumentException("Recruiter " + applicationRequest.getRecruiterId() + " not found!");
         }
-        Optional<CandidateEntity> candidateEntity = candidateRepository.findByEmail(applicationRequest.getCandidateName());
-        if (candidateEntity == null) {
-            throw new IllegalArgumentException("Candidate " + applicationRequest.getCandidateName() + " not found!");
+        Optional<CandidateEntity> candidateEntity = candidateRepository.findById(applicationRequest.getCandidateId());
+        if (!candidateEntity.isPresent()) {
+            throw new IllegalArgumentException("Candidate " + applicationRequest.getCandidateId() + " not found!");
         }
 
-        ApplicationEntity applicationEntity = applicationRepository.findByRecruiterAndCandidate(recruiterEntity, candidateEntity).orElse(null);
+        ApplicationEntity applicationEntity = applicationRepository.findByRecruiterAndCandidate(recruiterEntity.get().getId(), candidateEntity.get().getId()).orElse(null);
 
         if(applicationEntity != null){
             throw new IllegalArgumentException("This application already exists!");
@@ -49,6 +49,8 @@ public class ApplicationService {
                 .build();
 
         Application application = mapEntityToDto(applicationEntity);
+
+        applicationRepository.save(applicationEntity);
 
         return application;
     }

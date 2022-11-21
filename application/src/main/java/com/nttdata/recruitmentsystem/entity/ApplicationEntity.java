@@ -1,7 +1,7 @@
-package com.nttdata.entity;
+package com.nttdata.recruitmentsystem.entity;
 
-import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
+import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class ApplicationEntity {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "id")
+   @Column(name = "application_id")
    private int id;
 
    @Column(name = "creation_date")

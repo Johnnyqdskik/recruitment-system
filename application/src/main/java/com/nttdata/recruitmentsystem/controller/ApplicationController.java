@@ -1,15 +1,15 @@
-package com.nttdata.controller;
+package com.nttdata.recruitmentsystem.controller;
 
-import com.nttdata.dto.Application;
-import com.nttdata.dto.ApplicationRequest;
-import com.nttdata.service.ApplicationService;
+import com.nttdata.recruitmentsystem.dto.ApplicationRequest;
+import com.nttdata.recruitmentsystem.dto.Application;
+import com.nttdata.recruitmentsystem.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/applications")
+@RequestMapping("/api/applications")
 @RequiredArgsConstructor
 public class ApplicationController {
 
@@ -26,7 +26,7 @@ public class ApplicationController {
     }
 
     @PostMapping
-    public Application createNewApplication(ApplicationRequest applicationRequest){
+    public Application createNewApplication(@RequestBody ApplicationRequest applicationRequest){
         return applicationService.createApplication(applicationRequest);
     }
 }

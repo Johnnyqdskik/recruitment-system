@@ -1,4 +1,4 @@
-package com.nttdata.dto;
+package com.nttdata.recruitmentsystem.dto;
 
 import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
