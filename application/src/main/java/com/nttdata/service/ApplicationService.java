@@ -3,6 +3,8 @@ package com.nttdata.service;
 import com.nttdata.dto.Application;
 import com.nttdata.dto.ApplicationRequest;
 import com.nttdata.entity.ApplicationEntity;
+import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
+import com.nttdata.recruitmentsystem.candidate.repository.CandidateRepository;
 import com.nttdata.repository.ApplicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,14 +20,16 @@ import java.util.stream.Collectors;
 public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
+    private final CandidateRepository candidateRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public Application createApplication(ApplicationRequest applicationRequest){
-        UserEntity recruiterEntity = userRepository.findByUserName(applicationRequest.getRecruiterName());
+        Optional<UserEntity> recruiterEntity = userRepository.findByUserName(applicationRequest.getRecruiterName());
         if (recruiterEntity == null) {
             throw new IllegalArgumentException("Recruiter " + applicationRequest.getRecruiterName() + " not found!");
         }
-        CandidateEntity candidateEntity = candidateRepository.findByCandidateName(applicationRequest.getCandidateName());
+        Optional<CandidateEntity> candidateEntity = candidateRepository.findByEmail(applicationRequest.getCandidateName());
         if (candidateEntity == null) {
             throw new IllegalArgumentException("Candidate " + applicationRequest.getCandidateName() + " not found!");
         }

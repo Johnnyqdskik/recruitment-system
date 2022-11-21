@@ -1,5 +1,6 @@
 package com.nttdata.entity;
 
+import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

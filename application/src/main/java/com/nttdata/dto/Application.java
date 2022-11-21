@@ -1,5 +1,6 @@
 package com.nttdata.dto;
 
+import com.nttdata.recruitmentsystem.candidate.data.Candidate;
 import lombok.Builder;
 import lombok.Data;
 
