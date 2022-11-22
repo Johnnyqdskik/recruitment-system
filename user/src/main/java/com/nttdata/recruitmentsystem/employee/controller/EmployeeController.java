@@ -3,11 +3,8 @@ package com.nttdata.recruitmentsystem.employee.controller;
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
-import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
-import com.nttdata.recruitmentsystem.employee.exceptionHandler.WebException;
 import com.nttdata.recruitmentsystem.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +21,8 @@ public class EmployeeController {
     }
     @PostMapping
     public ResponseEntity<?> createEmployee(@RequestBody @Valid EmployeeCreate employee){
-        try {
-            employeeService.createEmployee(employee);
-            return ResponseEntity.ok().build();
-        } catch (WebException.EmailExistsException e) {
-            return ResponseEntity.badRequest().body(e.getMessageDto());
-        }
+          employeeService.createEmployee(employee);
+          return ResponseEntity.ok().build();
     }
     @GetMapping
     public List<Employee> findAllByRole (@RequestParam(name = "role", required = false)EmployeeRole role) {

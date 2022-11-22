@@ -4,7 +4,6 @@ import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
-import com.nttdata.recruitmentsystem.employee.exceptionHandler.WebException;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +21,6 @@ public class EmployeeService {
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-
 
    @Autowired
    private PasswordEncoder passwordEncoder;
@@ -45,11 +43,8 @@ public class EmployeeService {
                 .collect(Collectors.toList());
         return result;
     }
-    public void createEmployee(EmployeeCreate employee) throws WebException.EmailExistsException {
+    public void createEmployee(EmployeeCreate employee) {
         Optional<EmployeeEntity> existingEmployee = employeeRepository.findByEmail(employee.getEmail());
-        if (existingEmployee.isPresent()) {
-            throw new WebException.EmailExistsException();
-        }
 
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
 

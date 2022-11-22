@@ -31,6 +31,5 @@ public class CandidateController {
         candidateService.createCandidate(candidateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
 
