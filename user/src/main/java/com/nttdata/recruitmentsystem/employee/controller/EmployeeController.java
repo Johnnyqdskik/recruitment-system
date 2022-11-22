@@ -22,7 +22,6 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     @PostMapping
-    @PreAuthorize("hasAnyRole('RECRUITER', 'INTERVIEWER')")
     public ResponseEntity<?> createEmployee(@RequestBody @Valid EmployeeCreate employee){
         employeeService.createEmployee(employee);
         return new ResponseEntity<>(HttpStatus.OK);
