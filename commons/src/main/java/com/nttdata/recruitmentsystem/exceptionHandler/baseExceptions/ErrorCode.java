@@ -1,4 +1,4 @@
-package com.nttdata.recruitmentsystem.exceptionHandler.exceptions;
+package com.nttdata.recruitmentsystem.exceptionHandler.baseExceptions;
 
 public enum ErrorCode {
     // Common
@@ -11,7 +11,7 @@ public enum ErrorCode {
 
 
     // Users
-    EMAIL_DUPLICATION(400, "M001", "Email already exists"),
+    USERNAME_ALREADY_EXISTS(400, "M001", "Email already exists"),
     LOGIN_INPUT_INVALID(400, "M002", "Login input is invalid");
 
 

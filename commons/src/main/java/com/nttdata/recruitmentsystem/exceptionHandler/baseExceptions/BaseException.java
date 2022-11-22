@@ -1,14 +1,14 @@
-package com.nttdata.recruitmentsystem.exceptionHandler.exceptions;
+package com.nttdata.recruitmentsystem.exceptionHandler.baseExceptions;
 
-public class BusinessException extends RuntimeException{
+public class BaseException extends RuntimeException{
     private ErrorCode errorCode;
 
-    public BusinessException(String message, ErrorCode errorCode) {
+    public BaseException(String message, ErrorCode errorCode) {
         super(message);
         this.errorCode = errorCode;
     }
 
-    public BusinessException(ErrorCode errorCode) {
+    public BaseException(ErrorCode errorCode) {
         super(errorCode.getMessage());
         this.errorCode = errorCode;
     }
