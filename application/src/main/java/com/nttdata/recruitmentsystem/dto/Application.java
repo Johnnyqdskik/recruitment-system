@@ -11,6 +11,7 @@ import java.util.Date;
 @Builder
 public class Application {
 
+    private Integer id;
     private CandidateEntity candidate;
     private EmployeeEntity recruiter;
     private Date creationDate;

@@ -80,6 +80,7 @@ public class ApplicationService {
 
     public static Application mapEntityToDto(ApplicationEntity applicationEntity) {
         return Application.builder()
+                .id(applicationEntity.getId())
                 .candidate(applicationEntity.getCandidate())
                 .recruiter(applicationEntity.getRecruiter())
                 .creationDate(applicationEntity.getCreationDate())
