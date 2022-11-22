@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "recruitment_system", name = "form_template")
+@Table(schema = "recruitment_system", name = "topic_template")
 @Data
 @Builder
 @NoArgsConstructor
