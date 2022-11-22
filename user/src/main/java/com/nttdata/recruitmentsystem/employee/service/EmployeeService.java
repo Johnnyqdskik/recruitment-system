@@ -6,6 +6,8 @@ import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.exceptionHandler.WebException;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +22,11 @@ public class EmployeeService {
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
+
+
+   @Autowired
+   private PasswordEncoder passwordEncoder;
+
 
     public List<Employee> findAll(){
         Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAll();
@@ -43,7 +50,9 @@ public class EmployeeService {
         if (existingEmployee.isPresent()) {
             throw new WebException.EmailExistsException();
         }
+
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+
         employeeRepository.save(Mapper.mapDtoToEntity(employee));
-        //TODO: PASSWORD HASH
     }
 }
