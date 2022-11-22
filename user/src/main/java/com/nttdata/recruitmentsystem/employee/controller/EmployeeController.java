@@ -7,6 +7,7 @@ import com.nttdata.recruitmentsystem.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,11 +22,13 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     @PostMapping
+    @PreAuthorize("hasAnyRole('RECRUITER', 'INTERVIEWER')")
     public ResponseEntity<?> createEmployee(@RequestBody @Valid EmployeeCreate employee){
         employeeService.createEmployee(employee);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping
+    @PreAuthorize("hasRole('RECRUITER')")
     public List<Employee> findAllByRole (@RequestParam(name = "role", required = false)EmployeeRole role) {
         if (role == null) {
             return employeeService.findAll();

@@ -41,7 +41,6 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/api/login/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/employees").permitAll()
                 .anyRequest().authenticated();
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
