@@ -1,4 +1,4 @@
-package dto;
+package com.nttdata.recruitmentsystem.template.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class TopicTemplate {
 
-    private int id;
     private String topicTemplateName;
-
+    private int fk;
 
 }

@@ -1,11 +1,11 @@
-package service;
+package com.nttdata.recruitmentsystem.template.service;
 
-import dto.FormTemplate;
-import entity.FormTemplateEntity;
+import com.nttdata.recruitmentsystem.template.dto.FormTemplate;
+import com.nttdata.recruitmentsystem.template.mapper.FormTemplateMapper;
+import com.nttdata.recruitmentsystem.template.repository.FormTemplateRepository;
+import com.nttdata.recruitmentsystem.template.entity.FormTemplateEntity;
 import lombok.extern.slf4j.Slf4j;
-import mapper.FormTemplateMapper;
 import org.springframework.stereotype.Service;
-import repository.FormTemplateRepository;
 
 import java.util.List;
 import java.util.Optional;

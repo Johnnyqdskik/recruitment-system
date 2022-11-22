@@ -1,15 +1,11 @@
-package service;
+package com.nttdata.recruitmentsystem.template.service;
 
-import dto.SkillGroupTemplate;
-import dto.TopicTemplate;
-import entity.SkillGroupTemplateEntity;
-import entity.TopicTemplateEntity;
+import com.nttdata.recruitmentsystem.template.dto.TopicTemplate;
+import com.nttdata.recruitmentsystem.template.mapper.TopicTemplateMapper;
+import com.nttdata.recruitmentsystem.template.repository.TopicTemplateRepository;
+import com.nttdata.recruitmentsystem.template.entity.TopicTemplateEntity;
 import lombok.extern.slf4j.Slf4j;
-import mapper.SkillGroupTemplateMapper;
-import mapper.TopicTemplateMapper;
 import org.springframework.stereotype.Service;
-import repository.SkillGroupTemplateRepository;
-import repository.TopicTemplateRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,10 +23,10 @@ public class TopicTemplateService {
     }
 
     public void createTopicTemplate(TopicTemplate topicTemplate) {
-        Optional<TopicTemplateEntity> existingTopicTemplate= topicTemplateRepository.findById(topicTemplate.getId());
+        Optional<TopicTemplateEntity> existingTopicTemplate= topicTemplateRepository.findByTopicTemplateName(topicTemplate.getTopicTemplateName());
         if(existingTopicTemplate.isPresent()){
-            log.warn("Topic template with id {} already exists", topicTemplate.getId());
-            throw new IllegalArgumentException("Topic template with id " + topicTemplate.getId() + " already exists");
+            log.warn("Topic template with name {} already exists", topicTemplate.getTopicTemplateName());
+            throw new IllegalArgumentException("Topic template with name " + topicTemplate.getTopicTemplateName() + " already exists");
         }
         topicTemplateRepository.save(TopicTemplateMapper.mapDtoToEntity(topicTemplate));
     }

@@ -1,7 +1,7 @@
-package mapper;
+package com.nttdata.recruitmentsystem.template.mapper;
 
-import dto.FormTemplate;
-import entity.FormTemplateEntity;
+import com.nttdata.recruitmentsystem.template.dto.FormTemplate;
+import com.nttdata.recruitmentsystem.template.entity.FormTemplateEntity;
 
 public class FormTemplateMapper {
 
@@ -15,7 +15,6 @@ public class FormTemplateMapper {
     public static FormTemplateEntity mapDtoToEntity(FormTemplate formTemplate) {
         return FormTemplateEntity.builder()
                 .formTemplateName(formTemplate.getFormTemplateName())
-                .id(formTemplate.getId())
                 .build();
     }
 }

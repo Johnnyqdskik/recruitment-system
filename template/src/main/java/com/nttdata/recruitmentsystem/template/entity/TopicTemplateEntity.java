@@ -1,4 +1,4 @@
-package entity;
+package com.nttdata.recruitmentsystem.template.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +21,7 @@ public class TopicTemplateEntity {
     private Integer id;
 
 
-    @Column (name = "topic_template_name")
+    @Column (name = "topic_name")
     private String topicTemplateName;
 
     @ManyToOne

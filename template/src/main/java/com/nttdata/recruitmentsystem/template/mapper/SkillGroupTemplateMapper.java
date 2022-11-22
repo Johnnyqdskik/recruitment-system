@@ -1,9 +1,7 @@
-package mapper;
+package com.nttdata.recruitmentsystem.template.mapper;
 
-import dto.FormTemplate;
-import dto.SkillGroupTemplate;
-import entity.FormTemplateEntity;
-import entity.SkillGroupTemplateEntity;
+import com.nttdata.recruitmentsystem.template.dto.SkillGroupTemplate;
+import com.nttdata.recruitmentsystem.template.entity.SkillGroupTemplateEntity;
 
 public class SkillGroupTemplateMapper {
 
@@ -16,7 +14,6 @@ public class SkillGroupTemplateMapper {
 
     public static SkillGroupTemplateEntity mapDtoToEntity(SkillGroupTemplate s) {
         return SkillGroupTemplateEntity.builder()
-                .id(s.getId())
                 .skillGroupName(s.getSkillGroupTemplateName())
                 .build();
     }

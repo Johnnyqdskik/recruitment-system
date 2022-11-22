@@ -1,4 +1,4 @@
-package entity;
+package com.nttdata.recruitmentsystem.template.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(schema = "recruitment_system", name = "form_template")
@@ -21,5 +22,8 @@ public class FormTemplateEntity {
 
     @Column (name = "template_name")
     private String formTemplateName;
+
+    @ManyToMany(mappedBy = "formTemplateEntities")
+    private Set<SkillGroupTemplateEntity> skillGroupTemplateEntities;
 }
 

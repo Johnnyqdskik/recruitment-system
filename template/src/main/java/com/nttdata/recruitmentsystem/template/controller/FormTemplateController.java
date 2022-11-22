@@ -1,12 +1,11 @@
-package controller;
+package com.nttdata.recruitmentsystem.template.controller;
 
-import dto.FormTemplate;
-import entity.FormTemplateEntity;
+import com.nttdata.recruitmentsystem.template.dto.FormTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.FormTemplateService;
+import com.nttdata.recruitmentsystem.template.service.FormTemplateService;
 
 import java.util.List;
 

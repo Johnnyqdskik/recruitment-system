@@ -1,4 +1,4 @@
-package entity;
+package com.nttdata.recruitmentsystem.template.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,7 +33,6 @@ public class SkillGroupTemplateEntity {
             schema = "recruitment_system",
             joinColumns = { @JoinColumn(name="fk_skill_group_template") },
             inverseJoinColumns = {@JoinColumn(name = "fk_form_template")}
-
     )
     private Set<FormTemplateEntity> formTemplateEntities;
 }

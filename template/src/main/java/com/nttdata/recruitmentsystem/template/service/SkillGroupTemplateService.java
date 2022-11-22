@@ -1,14 +1,11 @@
-package service;
+package com.nttdata.recruitmentsystem.template.service;
 
-import dto.FormTemplate;
-import dto.SkillGroupTemplate;
-import entity.FormTemplateEntity;
-import entity.SkillGroupTemplateEntity;
+import com.nttdata.recruitmentsystem.template.dto.SkillGroupTemplate;
+import com.nttdata.recruitmentsystem.template.mapper.SkillGroupTemplateMapper;
+import com.nttdata.recruitmentsystem.template.repository.SkillGroupTemplateRepository;
+import com.nttdata.recruitmentsystem.template.entity.SkillGroupTemplateEntity;
 import lombok.extern.slf4j.Slf4j;
-import mapper.FormTemplateMapper;
-import mapper.SkillGroupTemplateMapper;
 import org.springframework.stereotype.Service;
-import repository.SkillGroupTemplateRepository;
 
 import java.util.List;
 import java.util.Optional;
