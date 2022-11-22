@@ -27,7 +27,7 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping
-    @PreAuthorize("hasRole('RECRUITER')")
+    @PreAuthorize("hasAuthority('RECRUITER')")
     public List<Employee> findAllByRole (@RequestParam(name = "role", required = false)EmployeeRole role) {
         if (role == null) {
             return employeeService.findAll();

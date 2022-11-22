@@ -28,7 +28,7 @@ public class CandidateController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('RECRUITER')")
+    @PreAuthorize("hasAuthority('RECRUITER')")
     public ResponseEntity<?> createCandidate (@RequestBody CandidateRequest candidateRequest) {
         candidateService.createCandidate(candidateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
