@@ -7,5 +7,5 @@ public class FormRequest {
 
     private Integer applicationId;
     private Integer interviewerId;
-    private String formName;
+
 }

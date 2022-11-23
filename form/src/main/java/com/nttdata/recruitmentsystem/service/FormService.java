@@ -46,7 +46,6 @@ public class FormService {
         formEntity = FormEntity.builder()
                 .interviewer(interviewerEntity.get())
                 .application(applicationEntity.get())
-                .name(formRequest.getFormName())
                 .build();
 
         formRepository.save(formEntity);
