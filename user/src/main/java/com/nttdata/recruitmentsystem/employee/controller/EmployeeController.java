@@ -5,6 +5,7 @@ import com.nttdata.recruitmentsystem.employee.dto.Employee;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.employee.service.EmployeeService;
+import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.EmailNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +23,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     @PostMapping
-    public ResponseEntity<?> createEmployee(@RequestBody @Valid EmployeeCreate employee){
+    public ResponseEntity<?> createEmployee(@RequestBody @Valid EmployeeCreate employee) throws EmailNotFoundException {
           employeeService.createEmployee(employee);
           return ResponseEntity.ok().build();
     }

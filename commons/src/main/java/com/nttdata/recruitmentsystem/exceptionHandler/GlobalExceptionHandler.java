@@ -2,6 +2,7 @@ package com.nttdata.recruitmentsystem.exceptionHandler;
 
 import com.nttdata.recruitmentsystem.exceptionHandler.baseExceptions.BaseException;
 import com.nttdata.recruitmentsystem.exceptionHandler.baseExceptions.ErrorCode;
+import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.EmailNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +59,12 @@ public class GlobalExceptionHandler {
         log.error("handleAccessDeniedException", e);
         final ErrorResponse response = ErrorResponse.of(ErrorCode.HANDLE_ACCESS_DENIED);
         return new ResponseEntity<>(response, HttpStatus.valueOf(ErrorCode.HANDLE_ACCESS_DENIED.getStatus()));
+    }
+    @ExceptionHandler(EmailNotFoundException.class)
+    protected ResponseEntity<ErrorResponse> handleEmailNotFoundException (EmailNotFoundException e){
+        log.error("handleEmailNotFoundException", e);
+        final ErrorResponse response=ErrorResponse.of(ErrorCode.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(response,HttpStatus.valueOf(ErrorCode.INTERNAL_SERVER_ERROR.getStatus()));
     }
 
     @ExceptionHandler(BaseException.class)
