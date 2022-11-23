@@ -12,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +55,14 @@ public class FormService {
         return forms;
     }
 
+    public List<Form> findFormsByInterviewerId(Integer interviewerId){
+        List<Form> forms = formRepository.findByInterviewerId(interviewerId)
+                .stream()
+                .map(FormService::mapEntityToDto)
+                .collect(Collectors.toList());
+
+        return forms;
+    }
 
     public static Form mapEntityToDto(FormEntity formEntity){
         return Form.builder()

@@ -15,4 +15,7 @@ public interface FormRepository extends CrudRepository<FormEntity, Integer> {
 
     @Query("SELECT f FROM FormEntity f WHERE f.name = :formName")
     Optional<FormEntity> findByFormName(String formName);
+
+    @Query("SELECT f FROM FormEntity f JOIN f.interviewer i WHERE i.id = :interviewerId")
+    Optional<FormEntity> findByInterviewerId(Integer interviewerId);
 }

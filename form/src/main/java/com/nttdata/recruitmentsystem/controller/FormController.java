@@ -6,10 +6,9 @@ import com.nttdata.recruitmentsystem.repository.FormRepository;
 import com.nttdata.recruitmentsystem.service.FormService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/forms")
@@ -21,5 +20,10 @@ public class FormController {
     @PostMapping
     public Form createNewForm(@RequestBody FormRequest formRequest){
         return formService.createForm(formRequest);
+    }
+
+    @GetMapping("/interviewers/{id}")
+    public List<Form> findAllFormsByInterviewerId(@PathVariable("id") Integer interviewerId){
+        return formService.findFormsByInterviewerId(interviewerId);
     }
 }
