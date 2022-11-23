@@ -20,7 +20,7 @@ public class SkillGroupService {
         Optional<SkillGroupEntity> existingSkillGroup = skillGroupRepository.findByName(skillGroupRequest.getSkillName());
 
         if(existingSkillGroup.isPresent()){
-            throw new IllegalArgumentException("This skill group already exists");
+            throw new IllegalArgumentException("Skill group " + skillGroupRequest.getSkillName() + " already exists");
         }
         skillGroupRepository.save(mapDtoToEntity(skillGroupRequest));
     }
