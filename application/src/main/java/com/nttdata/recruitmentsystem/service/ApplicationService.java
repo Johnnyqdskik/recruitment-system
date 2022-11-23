@@ -2,6 +2,7 @@ package com.nttdata.recruitmentsystem.service;
 
 import com.nttdata.recruitmentsystem.dto.ApplicationRequest;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
+import com.nttdata.recruitmentsystem.employee.service.Mapper;
 import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
 import com.nttdata.recruitmentsystem.repository.ApplicationRepository;
 import com.nttdata.recruitmentsystem.dto.Application;
@@ -82,7 +83,7 @@ public class ApplicationService {
         return Application.builder()
                 .id(applicationEntity.getId())
                 .candidate(applicationEntity.getCandidate())
-                .recruiter(applicationEntity.getRecruiter())
+                .recruiter(Mapper.mapEntityToDto(applicationEntity.getRecruiter()))
                 .creationDate(applicationEntity.getCreationDate())
                 .build();
     }
