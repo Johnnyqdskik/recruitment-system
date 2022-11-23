@@ -15,13 +15,12 @@ import java.util.Collections;
 @EqualsAndHashCode
 public class UserDetailsImpl implements UserDetails {
 
-
+    private int id;
     private String email;
     private String password;
     private String role;
 
     private boolean isActive;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -57,5 +56,9 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isActive;
+    }
+
+    public int getId() {
+        return id;
     }
 }

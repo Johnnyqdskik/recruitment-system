@@ -1,8 +1,8 @@
 package com.nttdata.recruitmentsystem.candidate.controller;
 
+import com.nttdata.recruitmentsystem.candidate.service.CandidateService;
 import com.nttdata.recruitmentsystem.candidate.data.Candidate;
 import com.nttdata.recruitmentsystem.candidate.data.CandidateRequest;
-import com.nttdata.recruitmentsystem.candidate.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

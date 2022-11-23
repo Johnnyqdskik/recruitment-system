@@ -17,4 +17,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.nttdata.recruitmentsystem</groupId>
+            <artifactId>application</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nttdata.recruitmentsystem</groupId>
+            <artifactId>user</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

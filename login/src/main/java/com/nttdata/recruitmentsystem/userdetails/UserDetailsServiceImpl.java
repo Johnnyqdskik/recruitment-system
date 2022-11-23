@@ -29,6 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         UserDetailsImpl user = UserDetailsImpl.builder()
+                .id(employee.get().getId())
                 .email(employee.get().getEmail())
                 .password(employee.get().getPassword())
                 .isActive(employee.get().isActive())
