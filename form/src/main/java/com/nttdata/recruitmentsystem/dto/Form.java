@@ -17,7 +17,7 @@ public class Form {
     private String name;
     private String comment;
     private float averageGrade;
-    private ApplicationEntity application;
+    private Application application;
     private Employee interviewer;
 
 }

@@ -67,7 +67,7 @@ public class FormService {
 
     public static Form mapEntityToDto(FormEntity formEntity){
         return Form.builder()
-                .application(formEntity.getApplication())
+                .application(ApplicationMapper.mapEntityToDto(formEntity.getApplication()))
                 .interviewer(Mapper.mapEntityToDto(formEntity.getInterviewer()))
                 .averageGrade(formEntity.getAverageGrade())
                 .comment(formEntity.getComment())
