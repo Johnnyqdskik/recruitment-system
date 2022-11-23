@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>login</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.nttdata.recruitmentsystem</groupId>
+            <artifactId>user</artifactId>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
