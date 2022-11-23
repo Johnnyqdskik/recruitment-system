@@ -4,6 +4,7 @@ import com.nttdata.recruitmentsystem.dto.Form;
 import com.nttdata.recruitmentsystem.dto.FormRequest;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
+import com.nttdata.recruitmentsystem.employee.service.Mapper;
 import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
 import com.nttdata.recruitmentsystem.repository.ApplicationRepository;
 import com.nttdata.recruitmentsystem.repository.FormRepository;
@@ -67,7 +68,7 @@ public class FormService {
     public static Form mapEntityToDto(FormEntity formEntity){
         return Form.builder()
                 .application(formEntity.getApplication())
-                .interviewer(formEntity.getInterviewer())
+                .interviewer(Mapper.mapEntityToDto(formEntity.getInterviewer()))
                 .averageGrade(formEntity.getAverageGrade())
                 .comment(formEntity.getComment())
                 .name(formEntity.getName())

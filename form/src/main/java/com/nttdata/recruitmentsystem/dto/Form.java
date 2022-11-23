@@ -18,6 +18,6 @@ public class Form {
     private String comment;
     private float averageGrade;
     private ApplicationEntity application;
-    private EmployeeEntity interviewer;
+    private Employee interviewer;
 
 }
