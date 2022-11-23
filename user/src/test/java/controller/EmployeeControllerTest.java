@@ -24,7 +24,7 @@ public class EmployeeControllerTest {
     @Test
     public void testGetAllEmployees() {
         List<Employee> employees = new ArrayList<>();
-        Employee e = new Employee (1, "n@gmail.com", "Nikola", true, EmployeeRole.RECRUITER );
+        Employee e = new Employee (1, "n@gmail.com",  true, EmployeeRole.RECRUITER );
         employees.add(e);
 
         Mockito.when(employeeController.findAllByRole(EmployeeRole.RECRUITER)).thenReturn(employees);
@@ -35,7 +35,6 @@ public class EmployeeControllerTest {
             assertEquals(e.getId(), finalList.get(0).getId());
             assertEquals(e.getEmail(), finalList.get(0).getEmail());
             assertEquals(e.getRole(), finalList.get(0).getRole());
-            assertEquals(e.getPassword(), finalList.get(0).getPassword());
         }
         System.out.println(employees);
     }

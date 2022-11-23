@@ -23,7 +23,7 @@ public class SkillGroupTemplateService {
     private final SkillGroupTemplateRepository skillGroupTemplateRepository;
     private final TopicTemplateRepository topicTemplateRepository;
 
-    public SkillGroupTemplateService(SkillGroupTemplateRepository skillGroupTemplateRepository, SkillGroupTemplate skillGroupTemplate, SkillGroupTemplate skillGroupTemplate1, TopicTemplateRepository topicTemplateRepository) {
+    public SkillGroupTemplateService(SkillGroupTemplateRepository skillGroupTemplateRepository, TopicTemplateRepository topicTemplateRepository) {
         this.skillGroupTemplateRepository = skillGroupTemplateRepository;
         this.topicTemplateRepository = topicTemplateRepository;
     }
