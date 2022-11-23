@@ -13,7 +13,6 @@ public class Mapper {
         return Employee.builder()
                 .id(employee.getId())
                 .email(employee.getEmail())
-                .password(employee.getPassword())
                 .role(employee.getRole())
                 .active(employee.isActive())
                 .build();
