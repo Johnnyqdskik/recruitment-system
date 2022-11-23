@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(schema = "recruitment_system", name = "topic_template")
@@ -27,4 +28,7 @@ public class TopicTemplateEntity {
     @ManyToOne
     @JoinColumn(name = "fk_skill_group_template", nullable = false)
     private SkillGroupTemplateEntity skillGroupTemplateEntity;
+
+    @ManyToMany(mappedBy = "topicTemplateEntities")
+    Set<FormTemplateEntity> formTemplateEntities;
 }

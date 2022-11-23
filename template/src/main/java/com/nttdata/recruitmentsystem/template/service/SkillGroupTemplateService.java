@@ -1,9 +1,13 @@
 package com.nttdata.recruitmentsystem.template.service;
 
 import com.nttdata.recruitmentsystem.template.dto.SkillGroupTemplate;
+import com.nttdata.recruitmentsystem.template.dto.TopicTemplate;
+import com.nttdata.recruitmentsystem.template.entity.TopicTemplateEntity;
 import com.nttdata.recruitmentsystem.template.mapper.SkillGroupTemplateMapper;
+import com.nttdata.recruitmentsystem.template.mapper.TopicTemplateMapper;
 import com.nttdata.recruitmentsystem.template.repository.SkillGroupTemplateRepository;
 import com.nttdata.recruitmentsystem.template.entity.SkillGroupTemplateEntity;
+import com.nttdata.recruitmentsystem.template.repository.TopicTemplateRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +21,11 @@ import java.util.stream.StreamSupport;
 public class SkillGroupTemplateService {
 
     private final SkillGroupTemplateRepository skillGroupTemplateRepository;
+    private final TopicTemplateRepository topicTemplateRepository;
 
-    public SkillGroupTemplateService(SkillGroupTemplateRepository skillGroupTemplateRepository) {
+    public SkillGroupTemplateService(SkillGroupTemplateRepository skillGroupTemplateRepository, SkillGroupTemplate skillGroupTemplate, SkillGroupTemplate skillGroupTemplate1, TopicTemplateRepository topicTemplateRepository) {
         this.skillGroupTemplateRepository = skillGroupTemplateRepository;
+        this.topicTemplateRepository = topicTemplateRepository;
     }
 
     public void createSkillGroupTemplate(SkillGroupTemplate skillGroupTemplate) {
@@ -34,10 +40,28 @@ public class SkillGroupTemplateService {
     public List<SkillGroupTemplate> findAll() {
         Iterable<SkillGroupTemplateEntity> skillGroupTemplateEntities = skillGroupTemplateRepository.findAll();
 
-        List<SkillGroupTemplate> skillGroupTemplates = StreamSupport.stream
-                        (skillGroupTemplateEntities.spliterator(), false)
+        List<SkillGroupTemplate> skillGroups = StreamSupport.stream(skillGroupTemplateEntities.spliterator(), false)
                 .map(SkillGroupTemplateMapper::mapEntityToDto)
                 .collect(Collectors.toList());
-        return skillGroupTemplates;
+
+
+        for (SkillGroupTemplate e:skillGroups) {
+            List<TopicTemplateEntity> topicEntities = topicTemplateRepository.findAllTopicsBySkillGroupTemplateName(e.getSkillGroupTemplateName());
+            List<TopicTemplate> topics = topicEntities.stream()
+                    .map(TopicTemplateMapper::mapEntityToDto)
+                    .collect(Collectors.toList());
+
+            e.setTopics(topics);
+
+        }
+
+        return skillGroups;
+//        List<SkillGroupTemplate> skillGroupTemplates = StreamSupport.stream
+//                        (skillGroupTemplateEntities.spliterator(), false)
+//                .map(SkillGroupTemplateMapper::mapEntityToDto)
+//                .collect(Collectors.toList());
+//        return skillGroupTemplates;
     }
+
 }
+

@@ -35,5 +35,5 @@ public class SkillGroupTemplateEntity {
             joinColumns = { @JoinColumn(name="fk_skill_group_template") },
             inverseJoinColumns = {@JoinColumn(name = "fk_form_template")}
     )
-    Set<FormTemplateEntity> formTemplateEntities = new HashSet<>();
+    Set<FormTemplateEntity> formTemplateEntities;
 }
