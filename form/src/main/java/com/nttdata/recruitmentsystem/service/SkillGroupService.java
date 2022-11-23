@@ -1,13 +1,11 @@
 package com.nttdata.recruitmentsystem.service;
 
-import com.nttdata.recruitmentsystem.dto.SkillGroup;
 import com.nttdata.recruitmentsystem.dto.SkillGroupRequest;
 import com.nttdata.recruitmentsystem.entity.SkillGroupEntity;
 import com.nttdata.recruitmentsystem.repository.SkillGroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
