@@ -14,7 +14,7 @@ public class Application {
 
     private Integer id;
     private CandidateEntity candidate;
-    private EmployeeEntity recruiter;
+    private Employee recruiter;
     private Date creationDate;
 
 }
