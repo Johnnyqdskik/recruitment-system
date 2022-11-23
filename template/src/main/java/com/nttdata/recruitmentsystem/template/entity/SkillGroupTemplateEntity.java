@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,12 +28,12 @@ public class SkillGroupTemplateEntity {
     @OneToMany(mappedBy = "skillGroupTemplateEntity")
     private Set<TopicTemplateEntity> topicTemplateEntities;
 
-    @ManyToMany
+    @ManyToMany (cascade = { CascadeType.ALL })
     @JoinTable(
             name = "form_skill_group_template",
             schema = "recruitment_system",
             joinColumns = { @JoinColumn(name="fk_skill_group_template") },
             inverseJoinColumns = {@JoinColumn(name = "fk_form_template")}
     )
-    private Set<FormTemplateEntity> formTemplateEntities;
+    Set<FormTemplateEntity> formTemplateEntities = new HashSet<>();
 }

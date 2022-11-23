@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,6 @@ public class FormTemplateEntity {
     private String formTemplateName;
 
     @ManyToMany(mappedBy = "formTemplateEntities")
-    private Set<SkillGroupTemplateEntity> skillGroupTemplateEntities;
+    Set<SkillGroupTemplateEntity> skillGroupTemplateEntities = new HashSet<>();
 }
 
