@@ -13,6 +13,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SkillGroupTemplateEntity {
 
     @Id
@@ -24,8 +25,6 @@ public class SkillGroupTemplateEntity {
     private String skillGroupName;
 
     @OneToMany(mappedBy = "skillGroupTemplateEntity", fetch = FetchType.EAGER)
-    @ToString.Exclude
-    @HashCodeExclude
     private Set<TopicTemplateEntity> topicTemplateEntities;
 
     @ManyToMany (cascade = { CascadeType.ALL })
@@ -35,7 +34,5 @@ public class SkillGroupTemplateEntity {
             joinColumns = { @JoinColumn(name="fk_skill_group_template") },
             inverseJoinColumns = {@JoinColumn(name = "fk_form_template")}
     )
-    @ToString.Exclude
-    @HashCodeExclude
     Set<FormTemplateEntity> formTemplateEntities;
 }

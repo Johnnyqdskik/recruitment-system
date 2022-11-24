@@ -12,6 +12,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class TopicTemplateEntity {
 
     @Id
@@ -25,12 +26,8 @@ public class TopicTemplateEntity {
 
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_skill_group_template", nullable = false)
-    @ToString.Exclude
-    @HashCodeExclude
     private SkillGroupTemplateEntity skillGroupTemplateEntity;
 
     @ManyToMany(mappedBy = "topicTemplateEntities")
-    @ToString.Exclude
-    @HashCodeExclude
     Set<FormTemplateEntity> formTemplateEntities;
 }
