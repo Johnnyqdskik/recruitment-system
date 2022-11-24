@@ -4,6 +4,7 @@ import com.nttdata.recruitmentsystem.dto.SkillGroupRequest;
 import com.nttdata.recruitmentsystem.entity.FormEntity;
 import com.nttdata.recruitmentsystem.entity.SkillGroupEntity;
 import com.nttdata.recruitmentsystem.repository.SkillGroupRepository;
+import com.nttdata.recruitmentsystem.template.repository.SkillGroupTemplateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class SkillGroupService {
 
     private final SkillGroupRepository skillGroupRepository;
+    private final SkillGroupTemplateRepository skillGroupTemplateRepository;
 
     public void createSkillGroup(SkillGroupRequest skillGroupRequest){
         Optional<SkillGroupEntity> skillGroupEntity = skillGroupRepository.findByGroupName(skillGroupRequest.getSkillName());

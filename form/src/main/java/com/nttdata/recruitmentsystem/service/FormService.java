@@ -9,6 +9,8 @@ import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
 import com.nttdata.recruitmentsystem.repository.ApplicationRepository;
 import com.nttdata.recruitmentsystem.repository.FormRepository;
 import com.nttdata.recruitmentsystem.entity.FormEntity;
+import com.nttdata.recruitmentsystem.template.entity.FormTemplateEntity;
+import com.nttdata.recruitmentsystem.template.repository.FormTemplateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +26,11 @@ public class FormService {
     private final FormRepository formRepository;
     private final EmployeeRepository employeeRepository;
     private final ApplicationRepository applicationRepository;
+    private final FormTemplateRepository formTemplateRepository;
 
 
     @Transactional
-    public Form createForm(FormRequest formRequest){
+    public void createForm(FormRequest formRequest){
         Optional<EmployeeEntity> interviewerEntity = employeeRepository.findById(formRequest.getInterviewerId());
         if (!interviewerEntity.isPresent()) {
             throw new IllegalArgumentException("Interviewer " + formRequest.getInterviewerId() + " not found!");
@@ -35,6 +38,10 @@ public class FormService {
         Optional<ApplicationEntity> applicationEntity = applicationRepository.findById(formRequest.getApplicationId());
         if (!applicationEntity.isPresent()) {
             throw new IllegalArgumentException("Application " + formRequest.getApplicationId() + " not found!");
+        }
+        Optional<FormTemplateEntity> formTemplateEntity = formTemplateRepository.findById(formRequest.getTemplateId());
+        if(!formTemplateEntity.isPresent()){
+            throw new IllegalArgumentException("Template " + formRequest.getTemplateId() + " not found!");
         }
 
         FormEntity formEntity = formRepository.findByInterviewerAndApplication(interviewerEntity.get().getId(), applicationEntity.get().getId()).orElse(null);
@@ -49,10 +56,6 @@ public class FormService {
                 .build();
 
         formRepository.save(formEntity);
-
-        Form forms = mapEntityToDto(formEntity);
-
-        return forms;
     }
 
     public List<Form> findFormsByInterviewerId(Integer interviewerId){

@@ -1,8 +1,7 @@
 package com.nttdata.recruitmentsystem.dto;
 
 import com.nttdata.recruitmentsystem.employee.dto.Employee;
-import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
-import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
+import com.nttdata.recruitmentsystem.template.dto.FormTemplate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

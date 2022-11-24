@@ -26,6 +26,10 @@
             <groupId>com.nttdata.recruitmentsystem</groupId>
             <artifactId>user</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.nttdata.recruitmentsystem</groupId>
+            <artifactId>template</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
