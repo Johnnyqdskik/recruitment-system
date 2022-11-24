@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(schema = "recruitment_system", name = "form")
@@ -38,4 +39,8 @@ public class FormEntity {
     @ManyToOne
     @JoinColumn(name = "fk_interviewer")
     private EmployeeEntity interviewer;
+
+    @OneToMany(mappedBy = "form")
+    private Set<SkillGroupEntity> skillGroups;
+
 }

@@ -7,4 +7,5 @@ public class SkillGroupRequest {
 
     private String skillName;
     private String formName;
+    private Integer skillTemplateId;
 }

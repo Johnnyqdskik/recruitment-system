@@ -21,6 +21,7 @@ public class FormController {
 
     @PostMapping
     public ResponseEntity<?> createNewForm(@RequestBody FormRequest formRequest){
+        formService.createForm(formRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

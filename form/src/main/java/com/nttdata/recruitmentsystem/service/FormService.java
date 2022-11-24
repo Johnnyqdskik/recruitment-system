@@ -6,10 +6,14 @@ import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import com.nttdata.recruitmentsystem.employee.service.Mapper;
 import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
+import com.nttdata.recruitmentsystem.entity.SkillGroupEntity;
+import com.nttdata.recruitmentsystem.entity.TopicEntity;
 import com.nttdata.recruitmentsystem.repository.ApplicationRepository;
 import com.nttdata.recruitmentsystem.repository.FormRepository;
 import com.nttdata.recruitmentsystem.entity.FormEntity;
 import com.nttdata.recruitmentsystem.template.entity.FormTemplateEntity;
+import com.nttdata.recruitmentsystem.template.entity.SkillGroupTemplateEntity;
+import com.nttdata.recruitmentsystem.template.entity.TopicTemplateEntity;
 import com.nttdata.recruitmentsystem.template.repository.FormTemplateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,12 +55,44 @@ public class FormService {
             throw new IllegalArgumentException("This form already exists!");
         }
 
+        Set<SkillGroupEntity> skillGroupEntitySet = formTemplateEntity.get().getSkillGroupTemplateEntities().stream()
+                .map(o -> skillTempToSkill(o))
+                .collect(Collectors.toSet());
+
+        Set<SkillGroupEntity> finalSetofSkills = skillGroupEntitySet.stream()
+                .peek(o -> {
+                    Set<TopicTemplateEntity> topics = formTemplateEntity.get().getTopicTemplateEntities();
+                    o.setTopics(topics.stream().filter(t -> t.getSkillGroupTemplateEntity().getId() == o.getId())
+                            .map(topic -> topicEntityToTopic(topic)).collect(Collectors.toSet()));
+                }).collect(Collectors.toSet());
+
         formEntity = FormEntity.builder()
                 .interviewer(interviewerEntity.get())
                 .application(applicationEntity.get())
+                .skillGroups(skillGroupEntitySet)
                 .build();
 
         formRepository.save(formEntity);
+    }
+
+    private TopicEntity topicEntityToTopic(TopicTemplateEntity topic) {
+
+        return TopicEntity.builder()
+                .topicName(topic.getTopicTemplateName())
+                .grade(0)
+                .comment("")
+                .mandatory(true)
+                .build();
+
+    }
+
+    private SkillGroupEntity skillTempToSkill(SkillGroupTemplateEntity o) {
+
+        return SkillGroupEntity.builder()
+                .skillName(o.getSkillGroupName())
+                .averageGrade(0)
+                .build();
+
     }
 
     public List<Form> findFormsByInterviewerId(Integer interviewerId){
