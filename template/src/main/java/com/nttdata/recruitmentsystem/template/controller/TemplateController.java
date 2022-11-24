@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/template")
@@ -31,17 +33,17 @@ public class TemplateController {
 
     }
 
-    @GetMapping("/form")
+    @GetMapping
     public List<FormTemplate> findAllFormTemplates() {
         return formTemplateService.findAll();
     }
 
-
-    @GetMapping("/skill_group")
-    public List<SkillGroupTemplate> findAllSkillGroups() {return skillGroupTemplateService.findAll();
+    @GetMapping("/skill_group_template")
+    public List<SkillGroupTemplate> findAllSkillGroups() {
+        return skillGroupTemplateService.findAll();
     }
 
-    @PostMapping("/form")
+    @PostMapping
     public ResponseEntity<?> createFormTemplate(@RequestBody FormTemplate formTemplate) {
         formTemplateService.createFormTemplate(formTemplate);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -59,4 +61,10 @@ public class TemplateController {
         topicTemplateService.createTopicTemplate(topicTemplate);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/skill_group_template/{id}")
+    public ResponseEntity<SkillGroupTemplate> updateGroup(@PathVariable("id") Integer id, @RequestBody SkillGroupTemplate dto) {
+        return ResponseEntity.ok(skillGroupTemplateService.updateSkillGroup(id, dto));
+    }
+
 }

@@ -1,19 +1,21 @@
 package com.nttdata.recruitmentsystem.template.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
 @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class SkillGroupTemplate {
 
 
     private int id;
     private String skillGroupTemplateName;
-    private List<TopicTemplate> topics;
+    private Set<TopicTemplate> topics;
 }

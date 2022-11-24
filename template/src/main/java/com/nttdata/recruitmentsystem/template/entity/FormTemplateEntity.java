@@ -13,6 +13,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class FormTemplateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +24,6 @@ public class FormTemplateEntity {
     private String formTemplateName;
 
     @ManyToMany(mappedBy = "formTemplateEntities")
-    @ToString.Exclude
-    @HashCodeExclude
     Set<SkillGroupTemplateEntity> skillGroupTemplateEntities;
 
     @ManyToMany(cascade = {CascadeType.ALL})
@@ -34,8 +33,6 @@ public class FormTemplateEntity {
             joinColumns = {@JoinColumn(name = "fk_form_template")},
             inverseJoinColumns = {@JoinColumn(name = "fk_topic_template")}
     )
-    @ToString.Exclude
-    @HashCodeExclude
     Set<TopicTemplateEntity> topicTemplateEntities;
 }
 
