@@ -1,9 +1,7 @@
 package com.nttdata.recruitmentsystem.template.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.HashCodeExclude;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,6 +13,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SkillGroupTemplateEntity {
 
     @Id
