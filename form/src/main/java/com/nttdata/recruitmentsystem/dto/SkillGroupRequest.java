@@ -6,4 +6,5 @@ import lombok.Data;
 public class SkillGroupRequest {
 
     private String skillName;
+    private String formName;
 }

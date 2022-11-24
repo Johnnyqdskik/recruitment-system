@@ -6,4 +6,5 @@ import lombok.Data;
 public class TopicRequest {
 
     private String topic;
+    private String skillGroup;
 }
