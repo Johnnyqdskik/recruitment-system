@@ -1,6 +1,7 @@
 package com.nttdata.recruitmentsystem.template.mapper;
 
 import com.nttdata.recruitmentsystem.template.dto.SkillGroupTemplate;
+import com.nttdata.recruitmentsystem.template.dto.TopicTemplate;
 import com.nttdata.recruitmentsystem.template.entity.SkillGroupTemplateEntity;
 
 import java.util.stream.Collectors;

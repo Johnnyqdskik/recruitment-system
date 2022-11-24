@@ -1,9 +1,7 @@
 package com.nttdata.recruitmentsystem.template.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.HashCodeExclude;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -26,6 +24,8 @@ public class SkillGroupTemplateEntity {
     private String skillGroupName;
 
     @OneToMany(mappedBy = "skillGroupTemplateEntity", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @HashCodeExclude
     private Set<TopicTemplateEntity> topicTemplateEntities;
 
     @ManyToMany (cascade = { CascadeType.ALL })
@@ -35,5 +35,7 @@ public class SkillGroupTemplateEntity {
             joinColumns = { @JoinColumn(name="fk_skill_group_template") },
             inverseJoinColumns = {@JoinColumn(name = "fk_form_template")}
     )
+    @ToString.Exclude
+    @HashCodeExclude
     Set<FormTemplateEntity> formTemplateEntities;
 }
