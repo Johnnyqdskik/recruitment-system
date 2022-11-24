@@ -29,7 +29,8 @@ public class SkillGroupTemplateService {
     }
 
     public void createSkillGroupTemplate(SkillGroupTemplate skillGroupTemplate) {
-        Optional<SkillGroupTemplateEntity> existingSkillGroupTemplate = skillGroupTemplateRepository.findById(skillGroupTemplate.getId());
+        Optional<SkillGroupTemplateEntity> existingSkillGroupTemplate =
+                skillGroupTemplateRepository.findById(skillGroupTemplate.getId());
         if (existingSkillGroupTemplate.isPresent()) {
             log.warn("Skill group with id {} already exists", skillGroupTemplate.getId());
             throw new IllegalArgumentException("Skill group with id " + skillGroupTemplate.getId() + " already exists");
@@ -44,23 +45,8 @@ public class SkillGroupTemplateService {
                 .map(SkillGroupTemplateMapper::mapEntityToDto)
                 .collect(Collectors.toList());
 
-
-        for (SkillGroupTemplate e:skillGroups) {
-            List<TopicTemplateEntity> topicEntities = topicTemplateRepository.findAllTopicsBySkillGroupTemplateName(e.getSkillGroupTemplateName());
-            List<TopicTemplate> topics = topicEntities.stream()
-                    .map(TopicTemplateMapper::mapEntityToDto)
-                    .collect(Collectors.toList());
-
-            e.setTopics(topics);
-
-        }
-
         return skillGroups;
-//        List<SkillGroupTemplate> skillGroupTemplates = StreamSupport.stream
-//                        (skillGroupTemplateEntities.spliterator(), false)
-//                .map(SkillGroupTemplateMapper::mapEntityToDto)
-//                .collect(Collectors.toList());
-//        return skillGroupTemplates;
+
     }
 
 }

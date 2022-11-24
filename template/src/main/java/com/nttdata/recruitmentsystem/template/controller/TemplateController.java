@@ -18,20 +18,17 @@ import java.util.List;
 public class TemplateController {
 
     private final FormTemplateService formTemplateService;
-    private final SkillGroupTemplateService skillGroupTemplateService;
-    private final TopicTemplateService topicTemplateService;
 
-    private final TopicTemplate topicTemplate;
-    private final SkillGroupTemplate skillGroupTemplate;
+    private final TopicTemplateService topicTemplateService;
+    private final SkillGroupTemplateService skillGroupTemplateService;
 
 
     @Autowired
-    public TemplateController(FormTemplateService formTemplateService, SkillGroupTemplateService skillGroupTemplateService, TopicTemplateService topicTemplateService, TopicTemplate topicTemplate, SkillGroupTemplate skillGroupTemplate) {
+    public TemplateController(FormTemplateService formTemplateService, TopicTemplateService topicTemplateService, SkillGroupTemplateService skillGroupTemplateService) {
         this.formTemplateService = formTemplateService;
-        this.skillGroupTemplateService = skillGroupTemplateService;
         this.topicTemplateService = topicTemplateService;
-        this.topicTemplate = topicTemplate;
-        this.skillGroupTemplate = skillGroupTemplate;
+        this.skillGroupTemplateService = skillGroupTemplateService;
+
     }
 
     @GetMapping("/form")
@@ -39,16 +36,10 @@ public class TemplateController {
         return formTemplateService.findAll();
     }
 
-    @GetMapping("/skill_group_template")
-    public List<SkillGroupTemplate> findAllSkills() {
-        return skillGroupTemplateService.findAll();
-    }
 
-//    @GetMapping("/skill_group_template")
-//    public List<TopicTemplate> findAllTopics() {return topicTemplateService
-//            .findAllTopicsBySkillGroupTemplateName
-//            (skillGroupTemplate.getSkillGroupTemplateName());
-//    }
+    @GetMapping("/skill_group")
+    public List<SkillGroupTemplate> findAllSkillGroups() {return skillGroupTemplateService.findAll();
+    }
 
     @PostMapping("/form")
     public ResponseEntity<?> createFormTemplate(@RequestBody FormTemplate formTemplate) {

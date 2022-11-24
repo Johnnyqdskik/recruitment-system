@@ -20,10 +20,24 @@ public interface TopicTemplateRepository extends CrudRepository <TopicTemplateEn
     Optional<TopicTemplateEntity> findTopicById(Integer id);
 
 
-    @Query("SELECT t.topic_template_id, t.topic_name, t.fk_skill_group_template, " +
-            "s.skill_group_template_id, s.skill_group_name FROM TopicTemplate t " +
-            "JOIN SkillGroupTemplate s ON t.fk_skill_group_template = s.skill_group_template_id")
-    List<TopicTemplateEntity> findAllTopicsBySkillGroupTemplateName(String skillGroupTemplateName);
+
 
 
 }
+
+//@SqlResultSetMapping(
+//        name = "TopicSkillGroupMapping",
+//        entities = {
+//                @EntityResult(
+//                        entityClass = TopicTemplate.class,
+//                        fields = {
+//                                @FieldResult(name = "id", column = "topic_template_id"),
+//                                @FieldResult(name = "topicTemplateName", column = "topic_name"),
+//                                @FieldResult(name = "skillGroupTemplateEntity", column = "fk_skill_group_template"),}),
+//
+//                @EntityResult(
+//                        entityClass = SkillGroupTemplate.class,
+//                        fields = {
+//                                @FieldResult(name = "id", column = "skill_group_template_id"),
+//                                @FieldResult(name = "skillGroupName", column = "skill_group_name"),
+//                        })})

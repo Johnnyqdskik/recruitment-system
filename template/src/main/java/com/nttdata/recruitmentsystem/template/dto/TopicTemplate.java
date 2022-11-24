@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class TopicTemplate {
 
+    int id;
     private String topicTemplateName;
     private int fk;
 

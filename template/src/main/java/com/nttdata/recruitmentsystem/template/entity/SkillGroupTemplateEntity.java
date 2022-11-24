@@ -25,7 +25,7 @@ public class SkillGroupTemplateEntity {
     @Column (name = "skill_group_name")
     private String skillGroupName;
 
-    @OneToMany(mappedBy = "skillGroupTemplateEntity")
+    @OneToMany(mappedBy = "skillGroupTemplateEntity", fetch = FetchType.EAGER)
     private Set<TopicTemplateEntity> topicTemplateEntities;
 
     @ManyToMany (cascade = { CascadeType.ALL })
