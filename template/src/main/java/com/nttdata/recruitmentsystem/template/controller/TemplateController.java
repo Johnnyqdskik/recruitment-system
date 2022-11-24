@@ -1,5 +1,6 @@
 package com.nttdata.recruitmentsystem.template.controller;
 
+import com.nttdata.recruitmentsystem.template.dto.AssignTopicToGroupRequest;
 import com.nttdata.recruitmentsystem.template.dto.FormTemplate;
 import com.nttdata.recruitmentsystem.template.dto.SkillGroupTemplate;
 import com.nttdata.recruitmentsystem.template.dto.TopicTemplate;
@@ -65,6 +66,15 @@ public class TemplateController {
     @PutMapping("/skill_group_template/{id}")
     public ResponseEntity<SkillGroupTemplate> updateGroup(@PathVariable("id") Integer id, @RequestBody SkillGroupTemplate dto) {
         return ResponseEntity.ok(skillGroupTemplateService.updateSkillGroup(id, dto));
+    }
+    @DeleteMapping("/skill_group_template/{id}")
+    public ResponseEntity deleteGroup(@PathVariable("id") Integer id) {
+        skillGroupTemplateService.deleteSkillGroup(id);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/skill_group_template")
+    public ResponseEntity<SkillGroupTemplate> assignTopicToGroup(@RequestBody AssignTopicToGroupRequest request) {
+        return ResponseEntity.ok(skillGroupTemplateService.assignSkillTopicToSkillGroup(request.getGroupId(), request.getTopicId()));
     }
 
 }
