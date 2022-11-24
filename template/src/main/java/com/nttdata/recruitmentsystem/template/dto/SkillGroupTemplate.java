@@ -17,5 +17,5 @@ public class SkillGroupTemplate {
 
     private int id;
     private String skillGroupTemplateName;
-    private Set<TopicTemplate> topics;
+    private List<TopicTemplate> topics;
 }
