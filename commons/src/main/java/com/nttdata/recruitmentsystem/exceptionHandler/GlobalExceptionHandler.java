@@ -3,10 +3,12 @@ package com.nttdata.recruitmentsystem.exceptionHandler;
 import com.nttdata.recruitmentsystem.exceptionHandler.baseExceptions.BaseException;
 import com.nttdata.recruitmentsystem.exceptionHandler.baseExceptions.ErrorCode;
 import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.EmailNotFoundException;
+import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.UsernameDuplicateException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -66,7 +68,19 @@ public class GlobalExceptionHandler {
         final ErrorResponse response=ErrorResponse.of(ErrorCode.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(response,HttpStatus.valueOf(ErrorCode.INTERNAL_SERVER_ERROR.getStatus()));
     }
+    @ExceptionHandler(UsernameDuplicateException.class)
+    protected ResponseEntity<ErrorResponse> handleUsernameDuplicateException(UsernameDuplicateException e){
+        log.error("handleUsernameDuplicateException", e);
+        final ErrorResponse response=ErrorResponse.of(ErrorCode.USERNAME_ALREADY_EXISTS);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ErrorCode.USERNAME_ALREADY_EXISTS.getStatus()));
+    }
 
+    @ExceptionHandler(BadCredentialsException.class)
+    protected ResponseEntity<ErrorResponse> handleBadCredentialsException (BadCredentialsException  e){
+        log.error("handleBadCredentialsException", e);
+        final ErrorResponse response =ErrorResponse.of(ErrorCode.LOGIN_INPUT_INVALID);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ErrorCode.INVALID_INPUT_VALUE.getStatus()));
+    }
     @ExceptionHandler(BaseException.class)
     protected ResponseEntity<ErrorResponse> handleBaseException(final BaseException e) {
         log.error("handleEntityNotFoundException", e);

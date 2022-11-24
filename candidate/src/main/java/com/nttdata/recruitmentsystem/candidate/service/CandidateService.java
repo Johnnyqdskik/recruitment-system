@@ -3,11 +3,13 @@ package com.nttdata.recruitmentsystem.candidate.service;
 import com.nttdata.recruitmentsystem.candidate.data.Candidate;
 import com.nttdata.recruitmentsystem.candidate.data.CandidateRequest;
 import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
+import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.UsernameDuplicateException;
 import lombok.extern.slf4j.Slf4j;
 import com.nttdata.recruitmentsystem.candidate.mapper.CandidateMapper;
 import org.springframework.stereotype.Service;
 import com.nttdata.recruitmentsystem.candidate.repository.CandidateRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,9 +28,8 @@ public class CandidateService {
     }
     public void createCandidate(CandidateRequest candidateRequest) {
         Optional<CandidateEntity> existingCandidate = candidateRepository.findByEmail(candidateRequest.getEmail());
-        if(existingCandidate.isPresent()){
-            log.warn("Candidate with email {} already exists", candidateRequest.getEmail());
-            throw new IllegalArgumentException("Candidate with email " + candidateRequest.getEmail() + " already exists");
+        if(!existingCandidate.isEmpty()){
+            throw new UsernameDuplicateException(candidateRequest.getEmail());
         }
         candidateRepository.save(CandidateMapper.mapDtoToEntity(candidateRequest));
     }

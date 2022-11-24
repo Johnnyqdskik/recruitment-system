@@ -6,10 +6,13 @@ import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
 import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.EmailNotFoundException;
+import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.UsernameDuplicateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,10 +45,10 @@ public class EmployeeService {
                 .collect(Collectors.toList());
         return result;
     }
-    public void createEmployee(EmployeeCreate employee) throws EmailNotFoundException {
+    public void createEmployee(EmployeeCreate employee) throws UsernameDuplicateException {
         Optional<EmployeeEntity> existingEmployee = employeeRepository.findByEmail(employee.getEmail());
-        if(existingEmployee.isEmpty()){
-            throw new EmailNotFoundException(employee.getEmail());
+        if(!existingEmployee.isEmpty()){
+            throw new UsernameDuplicateException(employee.getEmail());
         }
         EmployeeEntity entity = Mapper.mapDtoToEntity(employee);
         entity.setPassword(passwordEncoder.encode(employee.getPassword()));

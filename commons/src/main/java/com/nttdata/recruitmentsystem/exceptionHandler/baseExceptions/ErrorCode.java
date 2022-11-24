@@ -11,8 +11,9 @@ public enum ErrorCode {
 
 
     // Users
-    USERNAME_ALREADY_EXISTS(400, "M001", "Email already exists"),
-    LOGIN_INPUT_INVALID(400, "M002", "Login input is invalid");
+
+    USERNAME_ALREADY_EXISTS(400, "U001", "Email already exists"),
+    LOGIN_INPUT_INVALID(400, "U002", "Login input is invalid");
 
 
     private final String code;
