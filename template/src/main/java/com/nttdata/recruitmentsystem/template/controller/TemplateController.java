@@ -66,7 +66,8 @@ public class TemplateController {
     }
 
     @PutMapping("/skill_group_template/{id}")
-    public ResponseEntity<SkillGroupTemplate> updateGroup(@PathVariable("id") Integer id, @RequestBody SkillGroupTemplate dto) {
+    public ResponseEntity<SkillGroupTemplate> updateGroup
+            (@PathVariable("id") Integer id, @RequestBody SkillGroupTemplate dto) {
         return ResponseEntity.ok(skillGroupTemplateService.updateSkillGroup(id, dto));
     }
     @DeleteMapping("/skill_group_template/{id}")
