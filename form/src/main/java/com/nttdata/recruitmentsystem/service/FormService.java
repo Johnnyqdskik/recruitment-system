@@ -64,23 +64,21 @@ public class FormService {
                 .map(o -> skillTempToSkill(o))
                 .collect(Collectors.toSet());
 
-        Set<SkillGroupEntity> finalSetofSkills = skillGroupEntitySet.stream()
-                .peek(o -> {
-                    Set<TopicTemplateEntity> topics = formTemplateEntity.get().getTopicTemplateEntities();
-                    o.setTopics(topics.stream().filter(t -> t.getSkillGroupTemplateEntity().getId() == o.getId())
-                            .map(topic -> topicEntityToTopic(topic)).collect(Collectors.toSet()));
-                }).collect(Collectors.toSet());
+//        Set<SkillGroupEntity> finalSetofSkills = skillGroupEntitySet.stream()
+//                .peek(o -> {
+//                    Set<TopicTemplateEntity> topics = formTemplateEntity.get().getTopicTemplateEntities();
+//                    o.setTopics(topics.stream().filter(t -> t.getSkillGroupTemplateEntity().getId() == o.getId())
+//                            .map(topic -> topicEntityToTopic(topic)).collect(Collectors.toSet()));
+//                }).collect(Collectors.toSet());
 
         formEntity = FormEntity.builder()
                 .interviewer(interviewerEntity.get())
                 .application(applicationEntity.get())
-                .skillGroups(finalSetofSkills)
                 .name(formRequest.getFormName())
+                .skillGroups(skillGroupEntitySet)
                 .build();
 
         formRepository.save(formEntity);
-
-        skillGroupRepository.saveAll(finalSetofSkills);
 
     }
 
