@@ -75,10 +75,15 @@ public class FormService {
                 .interviewer(interviewerEntity.get())
                 .application(applicationEntity.get())
                 .name(formRequest.getFormName())
-                .skillGroups(skillGroupEntitySet)
                 .build();
 
         formRepository.save(formEntity);
+
+        for (SkillGroupEntity s:skillGroupEntitySet) {
+            s.setForm(formEntity);
+        }
+
+        skillGroupRepository.saveAll(skillGroupEntitySet);
 
     }
 
@@ -98,6 +103,7 @@ public class FormService {
         return SkillGroupEntity.builder()
                 .skillName(o.getSkillGroupName())
                 .averageGrade(0)
+                .form(null)
                 .build();
 
     }
