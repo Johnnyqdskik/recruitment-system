@@ -11,6 +11,8 @@ import com.nttdata.recruitmentsystem.entity.TopicEntity;
 import com.nttdata.recruitmentsystem.repository.ApplicationRepository;
 import com.nttdata.recruitmentsystem.repository.FormRepository;
 import com.nttdata.recruitmentsystem.entity.FormEntity;
+import com.nttdata.recruitmentsystem.repository.SkillGroupRepository;
+import com.nttdata.recruitmentsystem.repository.TopicRepository;
 import com.nttdata.recruitmentsystem.template.entity.FormTemplateEntity;
 import com.nttdata.recruitmentsystem.template.entity.SkillGroupTemplateEntity;
 import com.nttdata.recruitmentsystem.template.entity.TopicTemplateEntity;
@@ -33,6 +35,9 @@ public class FormService {
     private final ApplicationRepository applicationRepository;
     private final FormTemplateRepository formTemplateRepository;
 
+    private final SkillGroupRepository skillGroupRepository;
+
+    private final TopicRepository topicRepository;
 
     @Transactional
     public void createForm(FormRequest formRequest){
@@ -69,10 +74,14 @@ public class FormService {
         formEntity = FormEntity.builder()
                 .interviewer(interviewerEntity.get())
                 .application(applicationEntity.get())
-                .skillGroups(skillGroupEntitySet)
+                .skillGroups(finalSetofSkills)
+                .name(formRequest.getFormName())
                 .build();
 
         formRepository.save(formEntity);
+
+        skillGroupRepository.saveAll(finalSetofSkills);
+
     }
 
     private TopicEntity topicEntityToTopic(TopicTemplateEntity topic) {

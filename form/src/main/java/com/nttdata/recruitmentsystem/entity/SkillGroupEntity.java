@@ -31,6 +31,6 @@ public class SkillGroupEntity {
     @JoinColumn(name = "fk_form")
     private FormEntity form;
 
-    @OneToMany(mappedBy = "skillGroup")
+    @OneToMany(mappedBy = "skillGroup", cascade = CascadeType.ALL)
     private Set<TopicEntity> topics;
 }

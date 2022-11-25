@@ -40,7 +40,7 @@ public class FormEntity {
     @JoinColumn(name = "fk_interviewer")
     private EmployeeEntity interviewer;
 
-    @OneToMany(mappedBy = "form")
+    @OneToMany(mappedBy = "form", cascade = CascadeType.ALL)
     private Set<SkillGroupEntity> skillGroups;
 
 }

@@ -4,10 +4,12 @@ import com.nttdata.recruitmentsystem.entity.FormEntity;
 import com.nttdata.recruitmentsystem.entity.SkillGroupEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface SkillGroupRepository extends CrudRepository<SkillGroupEntity, Integer> {
 
     @Query("SELECT s FROM SkillGroupEntity s WHERE s.skillName = :skillGroupName")

@@ -8,4 +8,5 @@ public class FormRequest {
     private Integer applicationId;
     private Integer interviewerId;
     private Integer templateId;
+    private String formName;
 }
