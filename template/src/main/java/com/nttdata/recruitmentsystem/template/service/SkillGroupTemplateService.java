@@ -11,6 +11,7 @@ import com.nttdata.recruitmentsystem.template.repository.TopicTemplateRepository
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,9 +45,26 @@ public class SkillGroupTemplateService {
         List<SkillGroupTemplate> skillGroups = StreamSupport.stream(skillGroupTemplateEntities.spliterator(), false)
                 .map(SkillGroupTemplateMapper::mapEntityToDto)
                 .collect(Collectors.toList());
-
         return skillGroups;
+    }
 
+    public SkillGroupTemplate updateSkillGroup(Integer groupId, SkillGroupTemplate dto) {
+        SkillGroupTemplateEntity skillGroupEntity = skillGroupTemplateRepository.findById(groupId).orElseThrow(EntityNotFoundException::new);
+        skillGroupEntity.setSkillGroupName(dto.getSkillGroupTemplateName());
+
+        return SkillGroupTemplateMapper.mapEntityToDto(skillGroupTemplateRepository.save(skillGroupEntity));
+    }
+    public void deleteSkillGroup(Integer groupId) {
+        SkillGroupTemplateEntity skillGroupEntity = skillGroupTemplateRepository.findById(groupId).orElseThrow(EntityNotFoundException::new);
+
+        skillGroupTemplateRepository.delete(skillGroupEntity);
+    }
+    public SkillGroupTemplate assignSkillTopicToSkillGroup(Integer groupId, Integer topicId) {
+        SkillGroupTemplateEntity skillGroupEntity = skillGroupTemplateRepository.findById(groupId).orElseThrow(EntityNotFoundException::new);
+        TopicTemplateEntity skillTopicEntity = topicTemplateRepository.findById(topicId).orElseThrow(EntityNotFoundException::new);
+
+        skillGroupEntity.getTopicTemplateEntities().add(skillTopicEntity);
+        return SkillGroupTemplateMapper.mapEntityToDto(skillGroupTemplateRepository.save(skillGroupEntity));
     }
 
 }

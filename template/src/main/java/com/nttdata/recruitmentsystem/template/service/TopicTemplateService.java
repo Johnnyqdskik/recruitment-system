@@ -37,7 +37,7 @@ public class TopicTemplateService {
                     ("Topic template with id " + topicTemplate.getId() + " already exists");
         }
         Optional<SkillGroupTemplateEntity> skillGroupTemplateEntity
-                = skillGroupTemplateRepository.findById(topicTemplate.getFk());
+                = skillGroupTemplateRepository.findById(topicTemplate.getSkillGroupTemplateId());
         if(skillGroupTemplateEntity.isPresent()){
             TopicTemplateEntity topicTemplateEntity = TopicTemplateMapper.mapDtoToEntity(topicTemplate);
             topicTemplateEntity.setSkillGroupTemplateEntity(skillGroupTemplateEntity.get());
