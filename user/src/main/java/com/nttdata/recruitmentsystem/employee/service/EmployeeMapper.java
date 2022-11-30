@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class Mapper {
+public class EmployeeMapper {
     public static Employee mapEntityToDto (EmployeeEntity employee){
         return Employee.builder()
                 .id(employee.getId())

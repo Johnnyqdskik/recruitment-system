@@ -10,12 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Form {
+public class FormHeader {
 
+    private Integer id;
     private String name;
-    private String interviewerComment;
-    private float averageGrade;
-    private ApplicationResponse application;
     private Employee interviewer;
+    private String interviewerComment;
 
 }

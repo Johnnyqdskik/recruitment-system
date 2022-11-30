@@ -5,14 +5,10 @@ import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
-import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.EmailNotFoundException;
 import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.UsernameDuplicateException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,7 +28,7 @@ public class EmployeeService {
         Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAll();
 
         List<Employee> employees= StreamSupport.stream(employeeEntities.spliterator(), false)
-                .map(Mapper::mapEntityToDto)
+                .map(EmployeeMapper::mapEntityToDto)
                 .collect(Collectors.toList());
         return employees;
     }
@@ -41,7 +37,7 @@ public class EmployeeService {
         Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAllByRole(role);
 
         List<Employee> result = StreamSupport.stream(employeeEntities.spliterator(), false)
-                .map(Mapper::mapEntityToDto)
+                .map(EmployeeMapper::mapEntityToDto)
                 .collect(Collectors.toList());
         return result;
     }
@@ -50,7 +46,7 @@ public class EmployeeService {
         if(!existingEmployee.isEmpty()){
             throw new UsernameDuplicateException(employee.getEmail());
         }
-        EmployeeEntity entity = Mapper.mapDtoToEntity(employee);
+        EmployeeEntity entity = EmployeeMapper.mapDtoToEntity(employee);
         entity.setPassword(passwordEncoder.encode(employee.getPassword()));
 
         employeeRepository.save(entity);

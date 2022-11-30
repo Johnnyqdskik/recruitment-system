@@ -1,13 +1,14 @@
 package com.nttdata.recruitmentsystem.service;
 
 import com.nttdata.recruitmentsystem.dto.Form;
-import com.nttdata.recruitmentsystem.dto.FormRequest;
+import com.nttdata.recruitmentsystem.dto.FormCreateRequest;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
-import com.nttdata.recruitmentsystem.employee.service.Mapper;
+import com.nttdata.recruitmentsystem.employee.service.EmployeeMapper;
 import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
 import com.nttdata.recruitmentsystem.entity.SkillGroupEntity;
 import com.nttdata.recruitmentsystem.entity.TopicEntity;
+import com.nttdata.recruitmentsystem.mapper.ApplicationMapper;
 import com.nttdata.recruitmentsystem.repository.ApplicationRepository;
 import com.nttdata.recruitmentsystem.repository.FormRepository;
 import com.nttdata.recruitmentsystem.entity.FormEntity;
@@ -40,18 +41,18 @@ public class FormService {
     private final TopicRepository topicRepository;
 
     @Transactional
-    public void createForm(FormRequest formRequest){
-        Optional<EmployeeEntity> interviewerEntity = employeeRepository.findById(formRequest.getInterviewerId());
+    public void createForm(FormCreateRequest formCreateRequest){
+        Optional<EmployeeEntity> interviewerEntity = employeeRepository.findById(formCreateRequest.getInterviewerId());
         if (!interviewerEntity.isPresent()) {
-            throw new IllegalArgumentException("Interviewer " + formRequest.getInterviewerId() + " not found!");
+            throw new IllegalArgumentException("Interviewer " + formCreateRequest.getInterviewerId() + " not found!");
         }
-        Optional<ApplicationEntity> applicationEntity = applicationRepository.findById(formRequest.getApplicationId());
+        Optional<ApplicationEntity> applicationEntity = applicationRepository.findById(formCreateRequest.getApplicationId());
         if (!applicationEntity.isPresent()) {
-            throw new IllegalArgumentException("Application " + formRequest.getApplicationId() + " not found!");
+            throw new IllegalArgumentException("Application " + formCreateRequest.getApplicationId() + " not found!");
         }
-        Optional<FormTemplateEntity> formTemplateEntity = formTemplateRepository.findById(formRequest.getTemplateId());
+        Optional<FormTemplateEntity> formTemplateEntity = formTemplateRepository.findById(formCreateRequest.getTemplateId());
         if(!formTemplateEntity.isPresent()){
-            throw new IllegalArgumentException("Template " + formRequest.getTemplateId() + " not found!");
+            throw new IllegalArgumentException("Template " + formCreateRequest.getTemplateId() + " not found!");
         }
 
         FormEntity formEntity = formRepository.findByInterviewerAndApplication(interviewerEntity.get().getId(), applicationEntity.get().getId()).orElse(null);
@@ -74,7 +75,7 @@ public class FormService {
         formEntity = FormEntity.builder()
                 .interviewer(interviewerEntity.get())
                 .application(applicationEntity.get())
-                .name(formRequest.getFormName())
+                .name(formTemplateEntity.get().getFormTemplateName())
                 .build();
 
         formRepository.save(formEntity);
@@ -120,9 +121,9 @@ public class FormService {
     public static Form mapEntityToDto(FormEntity formEntity){
         return Form.builder()
                 .application(ApplicationMapper.mapEntityToDto(formEntity.getApplication()))
-                .interviewer(Mapper.mapEntityToDto(formEntity.getInterviewer()))
+                .interviewer(EmployeeMapper.mapEntityToDto(formEntity.getInterviewer()))
                 .averageGrade(formEntity.getAverageGrade())
-                .comment(formEntity.getComment())
+                .interviewerComment(formEntity.getComment())
                 .name(formEntity.getName())
                 .build();
     }
