@@ -24,7 +24,7 @@ public class FormTemplateService {
     }
 
     public void createFormTemplate(FormTemplate formTemplate) {
-        Optional<FormTemplateEntity> existingFormTemplate= formTemplateRepository.findById(formTemplate.getId());
+        Optional<FormTemplateEntity> existingFormTemplate=formTemplateRepository.findById(formTemplate.getId());
         if(existingFormTemplate.isPresent()){
             log.warn("Form with id {} already exists", formTemplate.getId());
             throw new IllegalArgumentException("Form with id " + formTemplate.getId() + " already exists");

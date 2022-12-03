@@ -11,7 +11,6 @@ public class FormTemplateMapper {
                 .formTemplateName(entity.getFormTemplateName())
                 .build();
     }
-
     public static FormTemplateEntity mapDtoToEntity(FormTemplate formTemplate) {
         return FormTemplateEntity.builder()
                 .formTemplateName(formTemplate.getFormTemplateName())

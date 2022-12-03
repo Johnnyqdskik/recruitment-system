@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(schema = "public", name = "skill_group")
@@ -29,4 +30,7 @@ public class SkillGroupEntity {
     @ManyToOne
     @JoinColumn(name = "fk_form")
     private FormEntity form;
+
+    @OneToMany(mappedBy = "skillGroup", cascade = CascadeType.ALL)
+    private Set<TopicEntity> topics;
 }
