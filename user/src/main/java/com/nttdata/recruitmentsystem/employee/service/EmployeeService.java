@@ -5,10 +5,14 @@ import com.nttdata.recruitmentsystem.employee.dto.EmployeeCreate;
 import com.nttdata.recruitmentsystem.employee.dto.EmployeeRole;
 import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.employee.repository.EmployeeRepository;
+import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.EmailNotFoundException;
+import com.nttdata.recruitmentsystem.exceptionHandler.userExceptions.UsernameDuplicateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,14 +22,11 @@ import java.util.stream.StreamSupport;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository,  PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
+        this.passwordEncoder = passwordEncoder;
     }
-
-
-   @Autowired
-   private PasswordEncoder passwordEncoder;
-
+    private PasswordEncoder passwordEncoder;
 
     public List<Employee> findAll(){
         Iterable<EmployeeEntity> employeeEntities = employeeRepository.findAll();
@@ -44,14 +45,14 @@ public class EmployeeService {
                 .collect(Collectors.toList());
         return result;
     }
-    public void createEmployee(EmployeeCreate employee) {
+    public void createEmployee(EmployeeCreate employee) throws UsernameDuplicateException {
         Optional<EmployeeEntity> existingEmployee = employeeRepository.findByEmail(employee.getEmail());
-        if (existingEmployee.isPresent()) {
-            throw new IllegalArgumentException(" Employee with that email " + employee.getEmail() + " already exists");
+        if(!existingEmployee.isEmpty()){
+            throw new UsernameDuplicateException(employee.getEmail());
         }
+        EmployeeEntity entity = Mapper.mapDtoToEntity(employee);
+        entity.setPassword(passwordEncoder.encode(employee.getPassword()));
 
-        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-
-        employeeRepository.save(Mapper.mapDtoToEntity(employee));
+        employeeRepository.save(entity);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,10 +30,9 @@ public class CandidateController {
 
     @PostMapping
     @PreAuthorize("hasAuthority('RECRUITER')")
-    public ResponseEntity<?> createCandidate (@RequestBody CandidateRequest candidateRequest) {
+    public ResponseEntity<?> createCandidate (@RequestBody @Valid CandidateRequest candidateRequest) {
         candidateService.createCandidate(candidateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
 
