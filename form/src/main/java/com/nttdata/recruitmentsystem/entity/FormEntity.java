@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "recruitment_system", name = "form")
+@Table(schema = "public", name = "form")
 @Data
 @Builder
 @AllArgsConstructor

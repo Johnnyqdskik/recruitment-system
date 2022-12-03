@@ -11,7 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(schema = "recruitment_system", name = "candidate")
+@Table(schema = "public", name = "candidate")
 @Data
 @Builder
 @NoArgsConstructor

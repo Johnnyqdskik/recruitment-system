@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = "recruitment_system", name = "application")
+@Table(schema = "public", name = "application")
 @Data
 @Builder
 @AllArgsConstructor
