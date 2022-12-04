@@ -1,8 +1,6 @@
 package com.nttdata.recruitmentsystem.repository;
 
-import com.nttdata.recruitmentsystem.employee.entity.EmployeeEntity;
 import com.nttdata.recruitmentsystem.entity.ApplicationEntity;
-import com.nttdata.recruitmentsystem.candidate.entity.CandidateEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -19,6 +17,4 @@ public interface ApplicationRepository extends CrudRepository<ApplicationEntity,
     @Query("SELECT app FROM ApplicationEntity app JOIN app.recruiter r WHERE r.id = :recruiterId")
     List<ApplicationEntity> findAllByRecruiterId(Integer recruiterId);
 
-    @Query("SELECT app FROM ApplicationEntity app JOIN app.candidate c WHERE c.id = :candidateId")
-    List <ApplicationEntity> findAllByCandidateId(Integer candidateId);
 }

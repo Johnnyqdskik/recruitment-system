@@ -20,15 +20,15 @@
     <dependencies>
         <dependency>
             <groupId>com.nttdata.recruitmentsystem</groupId>
-            <artifactId>application</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.nttdata.recruitmentsystem</groupId>
             <artifactId>user</artifactId>
         </dependency>
         <dependency>
             <groupId>com.nttdata.recruitmentsystem</groupId>
             <artifactId>template</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nttdata.recruitmentsystem</groupId>
+            <artifactId>candidate</artifactId>
         </dependency>
     </dependencies>
 

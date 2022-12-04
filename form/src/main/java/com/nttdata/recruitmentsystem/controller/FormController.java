@@ -1,11 +1,9 @@
 package com.nttdata.recruitmentsystem.controller;
 
 import com.nttdata.recruitmentsystem.dto.Form;
-import com.nttdata.recruitmentsystem.dto.FormRequest;
-import com.nttdata.recruitmentsystem.repository.FormRepository;
+import com.nttdata.recruitmentsystem.dto.FormCreateRequest;
 import com.nttdata.recruitmentsystem.service.FormService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +18,8 @@ public class FormController {
     private final FormService formService;
 
     @PostMapping
-    public ResponseEntity<?> createNewForm(@RequestBody FormRequest formRequest){
-        formService.createForm(formRequest);
+    public ResponseEntity<?> createNewForm(@RequestBody FormCreateRequest formCreateRequest){
+        formService.createForm(formCreateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

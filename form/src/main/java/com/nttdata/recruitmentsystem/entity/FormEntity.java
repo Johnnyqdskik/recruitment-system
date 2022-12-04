@@ -27,7 +27,7 @@ public class FormEntity {
     private String name;
 
     @Column(name = "average_grade")
-    private float averageGrade;
+    private Float averageGrade;
 
     @Column(name = "interviewer_comment")
     private String comment;

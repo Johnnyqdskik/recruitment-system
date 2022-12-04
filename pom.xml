@@ -7,7 +7,6 @@
 		<module>webapp</module>
 		<module>user</module>
 		<module>candidate</module>
-		<module>application</module>
 		<module>login</module>
 		<module>template</module>
 		<module>form</module>
@@ -35,6 +34,11 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.nttdata.recruitmentsystem</groupId>
+				<artifactId>commons</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.nttdata.recruitmentsystem</groupId>
 				<artifactId>webapp</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -44,30 +48,25 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-			<groupId>com.nttdata.recruitmentsystem</groupId>
-			<artifactId>candidate</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+				<groupId>com.nttdata.recruitmentsystem</groupId>
+				<artifactId>candidate</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
-			<groupId>com.nttdata.recruitmentsystem</groupId>
-			<artifactId>application</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+				<groupId>com.nttdata.recruitmentsystem</groupId>
+				<artifactId>form</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
-			<groupId>com.nttdata.recruitmentsystem</groupId>
-			<artifactId>form</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+				<groupId>com.nttdata.recruitmentsystem</groupId>
+				<artifactId>login</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
-			<groupId>com.nttdata.recruitmentsystem</groupId>
-			<artifactId>login</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-			<dependency>
-			<groupId>com.nttdata.recruitmentsystem</groupId>
-			<artifactId>template</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+				<groupId>com.nttdata.recruitmentsystem</groupId>
+				<artifactId>template</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>

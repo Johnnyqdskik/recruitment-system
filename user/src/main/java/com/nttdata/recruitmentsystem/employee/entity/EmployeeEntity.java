@@ -28,6 +28,7 @@ public class EmployeeEntity {
     private String password;
 
     @Column(name = "active")
+    @Builder.Default
     private boolean active = true;
 
     @Enumerated(EnumType.STRING)
